@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88E9898EAA5C556572E13AF7 /* Pods_DubaiPalace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449942D210604910B0AFD1DE /* Pods_DubaiPalace.framework */; };
+		93BD63F1AF2F28BF33767326 /* libPods-DubaiPalace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 476549534E7951DE91B8A617 /* libPods-DubaiPalace.a */; };
 		CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D727287D38D900E8D625 /* AppDelegate.swift */; };
 		CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D729287D38D900E8D625 /* SceneDelegate.swift */; };
 		CEE7D72C287D38D900E8D625 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D72B287D38D900E8D625 /* ViewController.swift */; };
 		CEE7D72F287D38D900E8D625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE7D72D287D38D900E8D625 /* Main.storyboard */; };
 		CEE7D731287D38DE00E8D625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE7D730287D38DE00E8D625 /* Assets.xcassets */; };
 		CEE7D734287D38DE00E8D625 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE7D732287D38DE00E8D625 /* LaunchScreen.storyboard */; };
+		CEE7D897287D3F6000E8D625 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D896287D3F6000E8D625 /* API.swift */; };
+		CEE7D899287D442200E8D625 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D898287D442200E8D625 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		449942D210604910B0AFD1DE /* Pods_DubaiPalace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DubaiPalace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		476549534E7951DE91B8A617 /* libPods-DubaiPalace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DubaiPalace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CDD62F5B8114906891CB1AC /* Pods-DubaiPalace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DubaiPalace.debug.xcconfig"; path = "Target Support Files/Pods-DubaiPalace/Pods-DubaiPalace.debug.xcconfig"; sourceTree = "<group>"; };
 		60D1B2B29DCD232A8228B9B6 /* Pods-DubaiPalace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DubaiPalace.release.xcconfig"; path = "Target Support Files/Pods-DubaiPalace/Pods-DubaiPalace.release.xcconfig"; sourceTree = "<group>"; };
 		CEE7D724287D38D900E8D625 /* DubaiPalace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubaiPalace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,6 +30,8 @@
 		CEE7D730287D38DE00E8D625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE7D733287D38DE00E8D625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEE7D735287D38DE00E8D625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEE7D896287D3F6000E8D625 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
+		CEE7D898287D442200E8D625 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88E9898EAA5C556572E13AF7 /* Pods_DubaiPalace.framework in Frameworks */,
+				93BD63F1AF2F28BF33767326 /* libPods-DubaiPalace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +49,7 @@
 		20B6634F16D3BC5D5B15A02F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				449942D210604910B0AFD1DE /* Pods_DubaiPalace.framework */,
+				476549534E7951DE91B8A617 /* libPods-DubaiPalace.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -71,6 +75,7 @@
 		CEE7D726287D38D900E8D625 /* DubaiPalace */ = {
 			isa = PBXGroup;
 			children = (
+				CEE7D895287D3DD800E8D625 /* Model */,
 				CEE7D727287D38D900E8D625 /* AppDelegate.swift */,
 				CEE7D729287D38D900E8D625 /* SceneDelegate.swift */,
 				CEE7D72B287D38D900E8D625 /* ViewController.swift */,
@@ -80,6 +85,15 @@
 				CEE7D735287D38DE00E8D625 /* Info.plist */,
 			);
 			path = DubaiPalace;
+			sourceTree = "<group>";
+		};
+		CEE7D895287D3DD800E8D625 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7D896287D3F6000E8D625 /* API.swift */,
+				CEE7D898287D442200E8D625 /* APIManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D646805DD03FAEF342B63A5C /* Pods */ = {
@@ -188,6 +202,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE7D72C287D38D900E8D625 /* ViewController.swift in Sources */,
+				CEE7D897287D3F6000E8D625 /* API.swift in Sources */,
+				CEE7D899287D442200E8D625 /* APIManager.swift in Sources */,
 				CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */,
 				CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */,
 			);

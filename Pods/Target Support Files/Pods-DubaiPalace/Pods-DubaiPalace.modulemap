@@ -1,4 +1,4 @@
-framework module Pods_DubaiPalace {
+module Pods_DubaiPalace {
   umbrella header "Pods-DubaiPalace-umbrella.h"
 
   export *
