@@ -12,7 +12,7 @@ enum APIInfo: String {
     case SendLog = "http://appctl.bckappts.info/app_log/apl_insertweilog.php"
 }
 
-struct AppConfig {
+public struct AppConfig {
     var feedback : Int
     var logID : String
     var sessID : String
