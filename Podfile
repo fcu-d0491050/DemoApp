@@ -3,12 +3,12 @@
 
 target 'DubaiPalace' do
   # Comment the next line if you don't want to use dynamic frameworks
-
+  
   pod 'Alamofire', '~> 5.1'
   pod 'RxAlamofire'
   pod 'SwiftyJSON'
   pod 'RxSwift'
   pod 'RxCocoa'
   # Pods for DubaiPalace
-
+  
 end

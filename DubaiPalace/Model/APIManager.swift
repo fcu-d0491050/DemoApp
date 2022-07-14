@@ -14,10 +14,9 @@ class APIManager {
     
     static let shared = APIManager()
     
-    static func loadAPI(httpMethod: HTTPMethod, urlString: String, body: [String:Any]?) -> Observable<JSON> {
+    static func loadAPI(httpMethod: HTTPMethod, urlString: String, body: [String:Any]?, jsonEncode: Bool = false) -> Observable<JSON> {
         
-        let _request = request(httpMethod, urlString, parameters: body)
-        
+        let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default)
         return _request.responseData().map { (response, data) in
             do {
                 let jsonObj = try JSON(data: data)
@@ -39,6 +38,38 @@ extension APIManager {
                     "OS": 1,
                     "App": "ndbpp",
                     "IsDev" : 1] as [String : Any]
-        return APIManager.loadAPI(httpMethod: .post, urlString: "http://appctl.bckappts.info/mob_controller/judgeUpdate.php", body: body)
+        return APIManager.loadAPI(httpMethod: .post, urlString: APIInfo.AppConfig, body: body)
+    }
+    
+    func sendLog(content: ContentData) -> Observable<JSON> {
+        var _jsonString = ""
+        let dic = ["useful": ["cpu_used" : content.mobileInfo.cpuUsed,
+                              "mem_free" : content.mobileInfo.memFree,
+                              "device_name" : content.mobileInfo.deviceName,
+                              "access" : content.mobileInfo.access,
+                              "useful_space" : content.mobileInfo.usefulSpace,
+                              "nt_operator_name" : content.mobileInfo.operatorName,
+                              "mem_used" : content.mobileInfo.memUsed],
+                   "datas": ["user_agent" : content.appInfo.userAgent,
+                             "phone_start_time" : content.appInfo.phoneStartTime,
+                             "status" : content.appInfo.stauts,
+                             "appapp" : content.appInfo.appKey,
+                             "log_id" : content.appInfo.logID,
+                             "device_id" : content.appInfo.deviceID,
+                             "response" : content.appInfo.response,
+                             "sess_id" : content.appInfo.sessID,
+                             "request_url" : content.appInfo.requestUrl,
+                             "phone_end_time" : content.appInfo.phoneEndTime
+                            ]]
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(dic) {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                _jsonString = jsonString
+            }
+        }
+        let body = ["crlMode": "app_log",
+                    "content": _jsonString] as [String : Any]
+        return APIManager.loadAPI(httpMethod: .post, urlString: APIInfo.SendLog, body: body)
+        
     }
 }

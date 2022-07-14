@@ -9,6 +9,7 @@ import RxSwift
 
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
+    func sendLog(content: ContentData) -> Observable<LogDetail>
 }
 
 public class LoginRepository {
@@ -28,14 +29,14 @@ extension LoginRepository: LoginRepositoryInterface {
         apiManager.postApiConfig()
             .subscribe(onNext: { apiResult in
                 let result = AppConfig(feedback: apiResult["feedback"].intValue,
-                                          logID: apiResult["log_id"].stringValue,
-                                          sessID: apiResult["sess_id"].stringValue,
-                                          domainUrl: apiResult["domain_url"].stringValue,
-                                          appUpdateUrl: apiResult["appUpDate_url"].stringValue,
-                                          appKeyCode: apiResult["app"].stringValue,
-                                          webUrl: apiResult["web_url"].stringValue,
-                                          isDev: apiResult["isDev"].stringValue == "0" ? false : true,
-                                          checkLink: apiResult["check_link"].stringValue)
+                                       logID: apiResult["log_id"].stringValue,
+                                       sessID: apiResult["sess_id"].stringValue,
+                                       domainUrl: apiResult["domain_url"].stringValue,
+                                       appUpdateUrl: apiResult["appUpDate_url"].stringValue,
+                                       appKeyCode: apiResult["app"].stringValue,
+                                       webUrl: apiResult["web_url"].stringValue,
+                                       isDev: apiResult["isDev"].stringValue == "0" ? false : true,
+                                       checkLink: apiResult["check_link"].stringValue)
                 subject.onNext(result)
             }, onError: { error in
                 subject.onError(error)
@@ -43,5 +44,20 @@ extension LoginRepository: LoginRepositoryInterface {
             }).disposed(by: disposeBag)
         return subject.asObserver()
     }
-
+    
+    public func sendLog(content: ContentData) -> Observable<LogDetail> {
+        let subject = PublishSubject<LogDetail>()
+        apiManager.sendLog(content: content)
+            .subscribe(onNext: { apiResult in
+                let result = LogDetail(success: apiResult["success"].intValue,
+                                       sessID: apiResult["sess_id"].stringValue,
+                                       logID: apiResult["log_id"].stringValue)
+                subject.onNext(result)
+            }, onError: { error in
+                subject.onError(error)
+                
+            }).disposed(by: disposeBag)
+        return subject.asObserver()
+    }
+    
 }
