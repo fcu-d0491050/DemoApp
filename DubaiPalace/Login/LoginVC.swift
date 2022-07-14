@@ -15,6 +15,9 @@ class LoginVC: UIViewController {
     
     private var viewModel: LoginVM?
     private var disposeBag = DisposeBag()
+    private var contentData = ContentData(mobileInfo: MobileInfo(cpuUsed: "", memFree: "", deviceName: "", access: "", usefulSpace: "", operatorName: "", memUsed: ""), appInfo: AppInfo(userAgent: "", phoneStartTime: "", stauts: "", appKey: "", logID: "", deviceID: "", response: "", sessID: "", requestUrl: "", phoneEndTime: ""))
+    private var webUrl = ""
+    private var status : LogStatus = .none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +33,39 @@ class LoginVC: UIViewController {
     private func subscribeSubject() {
         
         self.viewModel?.appConfigSubject
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
+                self.webUrl = result.webUrl
                 self.getMobileInfo(result)
             }).disposed(by: disposeBag)
         self.viewModel?.postAppConfig()
         
         self.viewModel?.sendLogSubject
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { result in
-                print(result)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [self] result in
+                switch self.status {
+                case .afterAppConfig:
+                    self.status = .beforeCheckLink
+                    self.sendLogBeforeCheckLink()
+                case .beforeCheckLink:
+                    self.viewModel?.checkLink(url: self.webUrl)
+                case .afterCheckLink:
+                    break
+                case .none:
+                    break
+                }
             }).disposed(by: disposeBag)
+        
+        self.viewModel?.checkLinkSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { result in
+                guard result.isSuccess else { return } //網頁正常
+                self.status = .afterCheckLink
+                self.sendLogAfterCheckLink()
+            }).disposed(by: disposeBag)
+        
+
+        
         
     }
     
@@ -54,10 +79,25 @@ class LoginVC: UIViewController {
 //            let cellular = carrier?.carrierName ?? "No SIM Card"
 //        }
 //
-        let contentData = ContentData(mobileInfo: MobileInfo(cpuUsed: "", memFree: "", deviceName: UIDevice.current.name, access: "", usefulSpace: "", operatorName: "", memUsed: ""), appInfo: AppInfo(userAgent: userAgent, phoneStartTime: "", stauts: "2", appKey: appConfig.appKeyCode, logID: appConfig.logID, deviceID: deviceID, response: "", sessID: appConfig.sessID, requestUrl: appConfig.domainUrl, phoneEndTime: ""))
-        self.viewModel?.sendLog(content: contentData)
+        contentData = ContentData(mobileInfo: MobileInfo(cpuUsed: "", memFree: "", deviceName: UIDevice.current.name, access: "", usefulSpace: "", operatorName: "", memUsed: ""), appInfo: AppInfo(userAgent: userAgent, phoneStartTime: "", stauts: "2", appKey: appConfig.appKeyCode, logID: appConfig.logID, deviceID: deviceID, response: "", sessID: appConfig.sessID, requestUrl: appConfig.domainUrl, phoneEndTime: ""))
+        self.status = .afterAppConfig
+        self.viewModel?.sendLog(content: contentData, status: self.status)
     }
     
+    private func sendLogBeforeCheckLink() {
+        let timeInterval: TimeInterval = Date().timeIntervalSince1970
+        contentData.appInfo.phoneStartTime = String(timeInterval)
+        contentData.appInfo.stauts = "1"
+        self.viewModel?.sendLog(content: contentData, status: self.status)
+    }
+    
+    private func sendLogAfterCheckLink() {
+        let timeInterval: TimeInterval = Date().timeIntervalSince1970
+        contentData.appInfo.phoneEndTime = String(timeInterval)
+        contentData.appInfo.stauts = "2"
+        contentData.appInfo.requestUrl = webUrl
+        self.viewModel?.sendLog(content: contentData, status: self.status)
+    }
     
 }
 

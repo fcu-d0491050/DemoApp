@@ -10,6 +10,7 @@ import RxSwift
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
     func sendLog(content: ContentData) -> Observable<LogDetail>
+    func checkLink(url: String) -> Observable<CheckLinkStatus>
 }
 
 public class LoginRepository {
@@ -58,6 +59,19 @@ extension LoginRepository: LoginRepositoryInterface {
                 
             }).disposed(by: disposeBag)
         return subject.asObserver()
+    }
+    
+    public func checkLink(url: String) -> Observable<CheckLinkStatus> {
+        let subject = PublishSubject<CheckLinkStatus>()
+        apiManager.checkLink(url: url)
+            .subscribe(onNext: { apiResult in
+                let result = CheckLinkStatus(isSuccess: apiResult["status"].intValue == 1)
+                subject.onNext(result)
+            }, onError: { error in
+                subject.onError(error)
+            }).disposed(by: disposeBag)
+        return subject.asObserver()
+        
     }
     
 }
