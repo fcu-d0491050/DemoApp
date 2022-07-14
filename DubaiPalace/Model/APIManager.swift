@@ -14,7 +14,7 @@ class APIManager {
     
     static let shared = APIManager()
     
-    static func loadAPI(httpMethod: HTTPMethod, urlString: String, body: [String:Any]?) -> Observable<JSON> {
+    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: [String:String] = [:], body: [String:Any]?) -> Observable<JSON> {
         
         let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default)
         return _request.responseData().map { (response, data) in
@@ -61,7 +61,7 @@ extension APIManager {
                              "request_url" : content.appInfo.requestUrl,
                              "phone_end_time" : content.appInfo.phoneEndTime
                             ]]
-
+        
         if let jsonData = try? JSONEncoder().encode(dic) {
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 _jsonString = jsonString
@@ -73,7 +73,14 @@ extension APIManager {
         
     }
     
-    func checkLink(url: String) -> Observable<JSON> {
-        return APIManager.loadAPI(httpMethod: .get, urlString: url + "check_link", body: [:])
+    func checkLink() -> Observable<JSON> {
+        return APIManager.loadAPI(httpMethod: .get, urlString: ModelSingleton.shared.requestUrl + "check_link", body: [:])
+    }
+    
+    func ipVerify(ip: String) -> Observable<JSON> {
+        let headers = [
+            "Lang": "zh_CN"]
+        let body = ["ip": ip] as [String : Any]
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.ipVerify, headers: headers, body: body)
     }
 }

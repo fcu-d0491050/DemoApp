@@ -23,7 +23,10 @@ protocol LoginVMInterface {
     func sendLog(content: ContentData, status: LogStatus)
     
     var checkLinkSubject: PublishSubject<CheckLinkStatus> { get }
-    func checkLink(url: String)
+    func checkLink()
+    
+    var ipVerifySubject: PublishSubject<IpCheck> { get }
+    func ipVerify(_ ip: String)
     
 }
 
@@ -31,6 +34,8 @@ class LoginVM {
     let appConfigSubject = PublishSubject<AppConfig>()
     let sendLogSubject = PublishSubject<LogDetail>()
     let checkLinkSubject = PublishSubject<CheckLinkStatus>()
+    let ipVerifySubject = PublishSubject<IpCheck>()
+    
     private let loginRepository: LoginRepositoryInterface
     private let disposeBag = DisposeBag()
     
@@ -40,7 +45,7 @@ class LoginVM {
 }
 
 extension LoginVM: LoginVMInterface {
-
+    
     func postAppConfig() {
         loginRepository.postAppConfig()
             .subscribe(onNext: { result in
@@ -55,10 +60,17 @@ extension LoginVM: LoginVMInterface {
             }).disposed(by: disposeBag)
     }
     
-    func checkLink(url: String) {
-        loginRepository.checkLink(url: url)
+    func checkLink() {
+        loginRepository.checkLink()
             .subscribe(onNext: { result in
                 self.checkLinkSubject.onNext(result)
+            }).disposed(by: disposeBag)
+    }
+    
+    func ipVerify(_ ip: String) {
+        loginRepository.ipVerify(ip)
+            .subscribe(onNext: { result in
+                self.ipVerifySubject.onNext(result)
             }).disposed(by: disposeBag)
     }
 }

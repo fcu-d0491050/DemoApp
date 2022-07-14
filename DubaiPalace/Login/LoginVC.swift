@@ -14,10 +14,10 @@ import Network
 class LoginVC: UIViewController {
     
     private var viewModel: LoginVM?
-    private var disposeBag = DisposeBag()
     private var contentData = ContentData(mobileInfo: MobileInfo(cpuUsed: "", memFree: "", deviceName: "", access: "", usefulSpace: "", operatorName: "", memUsed: ""), appInfo: AppInfo(userAgent: "", phoneStartTime: "", stauts: "", appKey: "", logID: "", deviceID: "", response: "", sessID: "", requestUrl: "", phoneEndTime: ""))
-    private var webUrl = ""
     private var status : LogStatus = .none
+    private var logID = ""
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,22 +35,22 @@ class LoginVC: UIViewController {
         self.viewModel?.appConfigSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
-                self.webUrl = result.webUrl
-                self.getMobileInfo(result)
+                self.sendLogAfterAppConfig(result)
             }).disposed(by: disposeBag)
         self.viewModel?.postAppConfig()
         
         self.viewModel?.sendLogSubject
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [self] result in
+            .subscribe(onNext: { result in
                 switch self.status {
                 case .afterAppConfig:
                     self.status = .beforeCheckLink
                     self.sendLogBeforeCheckLink()
                 case .beforeCheckLink:
-                    self.viewModel?.checkLink(url: self.webUrl)
+                    self.logID = result.logID
+                    self.viewModel?.checkLink()
                 case .afterCheckLink:
-                    break
+                    self.viewModel?.ipVerify(self.getIPAddress())
                 case .none:
                     break
                 }
@@ -64,12 +64,16 @@ class LoginVC: UIViewController {
                 self.sendLogAfterCheckLink()
             }).disposed(by: disposeBag)
         
-
+        self.viewModel?.ipVerifySubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { result in
+                print(result)
+            }).disposed(by: disposeBag)
         
         
     }
     
-    private func getMobileInfo(_ appConfig: AppConfig) {
+    private func sendLogAfterAppConfig(_ appConfig: AppConfig) {
         let userAgent = "mobile,iPhone Mobile, name: \(UIDevice.current.name), systemVersion: \(UIDevice.current.systemVersion), label: Apple, model: \(UIDevice.current.model)"
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
 //        let networkInfo = CTTelephonyNetworkInfo()
@@ -79,6 +83,7 @@ class LoginVC: UIViewController {
 //            let cellular = carrier?.carrierName ?? "No SIM Card"
 //        }
 //
+        logID = appConfig.logID
         contentData = ContentData(mobileInfo: MobileInfo(cpuUsed: "", memFree: "", deviceName: UIDevice.current.name, access: "", usefulSpace: "", operatorName: "", memUsed: ""), appInfo: AppInfo(userAgent: userAgent, phoneStartTime: "", stauts: "2", appKey: appConfig.appKeyCode, logID: appConfig.logID, deviceID: deviceID, response: "", sessID: appConfig.sessID, requestUrl: appConfig.domainUrl, phoneEndTime: ""))
         self.status = .afterAppConfig
         self.viewModel?.sendLog(content: contentData, status: self.status)
@@ -87,6 +92,7 @@ class LoginVC: UIViewController {
     private func sendLogBeforeCheckLink() {
         let timeInterval: TimeInterval = Date().timeIntervalSince1970
         contentData.appInfo.phoneStartTime = String(timeInterval)
+        contentData.appInfo.logID = ""
         contentData.appInfo.stauts = "1"
         self.viewModel?.sendLog(content: contentData, status: self.status)
     }
@@ -95,13 +101,43 @@ class LoginVC: UIViewController {
         let timeInterval: TimeInterval = Date().timeIntervalSince1970
         contentData.appInfo.phoneEndTime = String(timeInterval)
         contentData.appInfo.stauts = "2"
-        contentData.appInfo.requestUrl = webUrl
+        contentData.appInfo.logID = self.logID
+        contentData.appInfo.requestUrl = ModelSingleton.shared.requestUrl
         self.viewModel?.sendLog(content: contentData, status: self.status)
     }
     
 }
 
 extension LoginVC {
+    
+    private func getIPAddress() -> String {
+        var address: String?
+        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+        if getifaddrs(&ifaddr) == 0 {
+            var ptr = ifaddr
+            while ptr != nil {
+                defer { ptr = ptr?.pointee.ifa_next }
+
+                guard let interface = ptr?.pointee else { return "" }
+                let addrFamily = interface.ifa_addr.pointee.sa_family
+                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+
+                    // wifi = ["en0"]
+                    // wired = ["en2", "en3", "en4"]
+                    // cellular = ["pdp_ip0","pdp_ip1","pdp_ip2","pdp_ip3"]
+
+                    let name: String = String(cString: (interface.ifa_name))
+                    if  name == "en0" || name == "en2" || name == "en3" || name == "en4" || name == "pdp_ip0" || name == "pdp_ip1" || name == "pdp_ip2" || name == "pdp_ip3" {
+                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                        getnameinfo(interface.ifa_addr, socklen_t((interface.ifa_addr.pointee.sa_len)), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST)
+                        address = String(cString: hostname)
+                    }
+                }
+            }
+            freeifaddrs(ifaddr)
+        }
+        return address ?? ""
+    }
     
     private func getNetworkType(currentRadioTech: String) -> String {
         
@@ -150,4 +186,3 @@ extension LoginVC {
     }
     
 }
-

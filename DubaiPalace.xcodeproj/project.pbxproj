@@ -14,6 +14,8 @@
 		CE761684287EAB8B00B3CCDE /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE761683287EAB8B00B3CCDE /* ContentData.swift */; };
 		CE761686287EB2C200B3CCDE /* LogDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE761685287EB2C200B3CCDE /* LogDetail.swift */; };
 		CE761688287FE29300B3CCDE /* CheckLinkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE761687287FE29300B3CCDE /* CheckLinkStatus.swift */; };
+		CE76168A287FFD0300B3CCDE /* ModelSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE761689287FFD0300B3CCDE /* ModelSingleton.swift */; };
+		CE7616912880261D00B3CCDE /* IpCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7616902880261D00B3CCDE /* IpCheck.swift */; };
 		CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D727287D38D900E8D625 /* AppDelegate.swift */; };
 		CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D729287D38D900E8D625 /* SceneDelegate.swift */; };
 		CEE7D72C287D38D900E8D625 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D72B287D38D900E8D625 /* LoginVC.swift */; };
@@ -34,6 +36,8 @@
 		CE761683287EAB8B00B3CCDE /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
 		CE761685287EB2C200B3CCDE /* LogDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetail.swift; sourceTree = "<group>"; };
 		CE761687287FE29300B3CCDE /* CheckLinkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLinkStatus.swift; sourceTree = "<group>"; };
+		CE761689287FFD0300B3CCDE /* ModelSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSingleton.swift; sourceTree = "<group>"; };
+		CE7616902880261D00B3CCDE /* IpCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpCheck.swift; sourceTree = "<group>"; };
 		CEE7D724287D38D900E8D625 /* DubaiPalace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubaiPalace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE7D727287D38D900E8D625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE7D729287D38D900E8D625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +46,7 @@
 		CEE7D730287D38DE00E8D625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE7D733287D38DE00E8D625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEE7D735287D38DE00E8D625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEE7D896287D3F6000E8D625 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = SOURCE_ROOT; };
+		CEE7D896287D3F6000E8D625 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppConfig.swift; path = DubaiPalace/Model/Entities/AppConfig.swift; sourceTree = SOURCE_ROOT; };
 		CEE7D898287D442200E8D625 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +79,26 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		CE76168D2880203800B3CCDE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7D896287D3F6000E8D625 /* AppConfig.swift */,
+				CE761685287EB2C200B3CCDE /* LogDetail.swift */,
+				CE761683287EAB8B00B3CCDE /* ContentData.swift */,
+				CE761687287FE29300B3CCDE /* CheckLinkStatus.swift */,
+				CE7616902880261D00B3CCDE /* IpCheck.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		CE76168F2880209000B3CCDE /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CE761679287E691400B3CCDE /* LoginRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		CEE7D71B287D38D800E8D625 = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +120,8 @@
 		CEE7D726287D38D900E8D625 /* DubaiPalace */ = {
 			isa = PBXGroup;
 			children = (
-				CE76167C287E6C6800B3CCDE /* Login */,
 				CEE7D895287D3DD800E8D625 /* Model */,
+				CE76167C287E6C6800B3CCDE /* Login */,
 				CEE7D727287D38D900E8D625 /* AppDelegate.swift */,
 				CEE7D729287D38D900E8D625 /* SceneDelegate.swift */,
 				CEE7D72D287D38D900E8D625 /* Main.storyboard */,
@@ -112,12 +136,10 @@
 			isa = PBXGroup;
 			children = (
 				CE76167F287E790C00B3CCDE /* APIInfo.swift */,
-				CEE7D896287D3F6000E8D625 /* AppConfig.swift */,
-				CE761685287EB2C200B3CCDE /* LogDetail.swift */,
-				CE761683287EAB8B00B3CCDE /* ContentData.swift */,
-				CE761687287FE29300B3CCDE /* CheckLinkStatus.swift */,
 				CEE7D898287D442200E8D625 /* APIManager.swift */,
-				CE761679287E691400B3CCDE /* LoginRepository.swift */,
+				CE761689287FFD0300B3CCDE /* ModelSingleton.swift */,
+				CE76168D2880203800B3CCDE /* Entities */,
+				CE76168F2880209000B3CCDE /* Repository */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,8 +256,10 @@
 				CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */,
 				CE761686287EB2C200B3CCDE /* LogDetail.swift in Sources */,
 				CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */,
+				CE76168A287FFD0300B3CCDE /* ModelSingleton.swift in Sources */,
 				CE761680287E790C00B3CCDE /* APIInfo.swift in Sources */,
 				CE76167A287E691400B3CCDE /* LoginRepository.swift in Sources */,
+				CE7616912880261D00B3CCDE /* IpCheck.swift in Sources */,
 				CE761684287EAB8B00B3CCDE /* ContentData.swift in Sources */,
 				CE761688287FE29300B3CCDE /* CheckLinkStatus.swift in Sources */,
 			);
@@ -395,6 +419,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joliangel288.DubaiPalace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -416,6 +441,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joliangel288.DubaiPalace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

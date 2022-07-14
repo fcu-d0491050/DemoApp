@@ -10,7 +10,8 @@ import RxSwift
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
     func sendLog(content: ContentData) -> Observable<LogDetail>
-    func checkLink(url: String) -> Observable<CheckLinkStatus>
+    func checkLink() -> Observable<CheckLinkStatus>
+    func ipVerify(_ ip : String) -> Observable<IpCheck>
 }
 
 public class LoginRepository {
@@ -38,6 +39,8 @@ extension LoginRepository: LoginRepositoryInterface {
                                        webUrl: apiResult["web_url"].stringValue,
                                        isDev: apiResult["isDev"].stringValue == "0" ? false : true,
                                        checkLink: apiResult["check_link"].stringValue)
+                let requestUrl = apiResult["web_url"].stringValue
+                ModelSingleton.shared.setRequestUrl(requestUrl)
                 subject.onNext(result)
             }, onError: { error in
                 subject.onError(error)
@@ -61,9 +64,9 @@ extension LoginRepository: LoginRepositoryInterface {
         return subject.asObserver()
     }
     
-    public func checkLink(url: String) -> Observable<CheckLinkStatus> {
+    public func checkLink() -> Observable<CheckLinkStatus> {
         let subject = PublishSubject<CheckLinkStatus>()
-        apiManager.checkLink(url: url)
+        apiManager.checkLink()
             .subscribe(onNext: { apiResult in
                 let result = CheckLinkStatus(isSuccess: apiResult["status"].intValue == 1)
                 subject.onNext(result)
@@ -72,6 +75,18 @@ extension LoginRepository: LoginRepositoryInterface {
             }).disposed(by: disposeBag)
         return subject.asObserver()
         
+    }
+    
+    public func ipVerify(_ ip: String) -> Observable<IpCheck> {
+        let subject = PublishSubject<IpCheck>()
+        apiManager.ipVerify(ip: ip)
+            .subscribe(onNext: { apiResult in
+                let result = IpCheck(status: apiResult["header"]["status"].stringValue, ipCheckResult: apiResult["body"]["ip_check_result"].boolValue)
+                subject.onNext(result)
+            }, onError: { error in
+                subject.onError(error)
+            }).disposed(by: disposeBag)
+        return subject.asObserver()
     }
     
 }
