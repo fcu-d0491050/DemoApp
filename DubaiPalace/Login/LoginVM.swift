@@ -22,10 +22,10 @@ protocol LoginVMInterface {
     var sendLogSubject: PublishSubject<LogDetail> { get }
     func sendLog(content: ContentData, status: LogStatus)
     
-    var checkLinkSubject: PublishSubject<CheckLinkStatus> { get }
+    var checkLinkSubject: PublishSubject<Result<Bool>> { get }
     func checkLink()
     
-    var ipVerifySubject: PublishSubject<IpCheck> { get }
+    var ipVerifySubject: PublishSubject<Result<Bool>> { get }
     func ipVerify(_ ip: String)
     
 }
@@ -33,8 +33,8 @@ protocol LoginVMInterface {
 class LoginVM {
     let appConfigSubject = PublishSubject<AppConfig>()
     let sendLogSubject = PublishSubject<LogDetail>()
-    let checkLinkSubject = PublishSubject<CheckLinkStatus>()
-    let ipVerifySubject = PublishSubject<IpCheck>()
+    let checkLinkSubject = PublishSubject<Result<Bool>>()
+    let ipVerifySubject = PublishSubject<Result<Bool>>()
     
     private let loginRepository: LoginRepositoryInterface
     private let disposeBag = DisposeBag()

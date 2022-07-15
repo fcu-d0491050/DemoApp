@@ -10,8 +10,8 @@ import RxSwift
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
     func sendLog(content: ContentData) -> Observable<LogDetail>
-    func checkLink() -> Observable<CheckLinkStatus>
-    func ipVerify(_ ip : String) -> Observable<IpCheck>
+    func checkLink() -> Observable<Result<Bool>>
+    func ipVerify(_ ip : String) -> Observable<Result<Bool>>
 }
 
 public class LoginRepository {
@@ -64,11 +64,11 @@ extension LoginRepository: LoginRepositoryInterface {
         return subject.asObserver()
     }
     
-    public func checkLink() -> Observable<CheckLinkStatus> {
-        let subject = PublishSubject<CheckLinkStatus>()
+    public func checkLink() -> Observable<Result<Bool>> {
+        let subject = PublishSubject<Result<Bool>>()
         apiManager.checkLink()
             .subscribe(onNext: { apiResult in
-                let result = CheckLinkStatus(isSuccess: apiResult["status"].intValue == 1)
+                let result = Result(data: apiResult["status"].intValue == 1, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
                 subject.onNext(result)
             }, onError: { error in
                 subject.onError(error)
@@ -77,11 +77,11 @@ extension LoginRepository: LoginRepositoryInterface {
         
     }
     
-    public func ipVerify(_ ip: String) -> Observable<IpCheck> {
-        let subject = PublishSubject<IpCheck>()
+    public func ipVerify(_ ip: String) -> Observable<Result<Bool>> {
+        let subject = PublishSubject<Result<Bool>>()
         apiManager.ipVerify(ip: ip)
             .subscribe(onNext: { apiResult in
-                let result = IpCheck(status: apiResult["header"]["status"].stringValue, ipCheckResult: apiResult["body"]["ip_check_result"].boolValue)
+                let result = Result(data: apiResult["body"]["ip_check_result"].boolValue, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
                 subject.onNext(result)
             }, onError: { error in
                 subject.onError(error)

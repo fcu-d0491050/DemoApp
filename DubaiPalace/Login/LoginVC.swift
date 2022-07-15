@@ -63,8 +63,8 @@ class LoginVC: UIViewController {
         
         self.viewModel?.checkLinkSubject
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { result in
-                guard result.isSuccess else { return } //網頁正常
+            .subscribe(onNext: { isLinkPass in
+                guard isLinkPass.data else { return } //網頁正常
                 self.status = .afterCheckLink
                 self.sendLogAfterCheckLink()
             }).disposed(by: disposeBag)
@@ -72,8 +72,20 @@ class LoginVC: UIViewController {
         self.viewModel?.ipVerifySubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
+                //status後三碼為100即為成功，非100為其他錯誤碼
+                if result.apiResult.status.suffix(3) == "100" {
+                    if result.data {
+                        print(result.apiResult.status.suffix(3))
+                    } else {
+                        print(result.apiResult.status.suffix(3))
+                    }
+                } else {
+                    self.showAlert(message: "錯誤：status後三碼非100")
+                }
                 print(result)
             }).disposed(by: disposeBag)
+        
+        //apprdtest01, qwe123
         
         
     }
@@ -114,6 +126,13 @@ class LoginVC: UIViewController {
 }
 
 extension LoginVC {
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "提示", message: "\(message)", preferredStyle: .alert)
+        let updateAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(updateAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     private func getIPAddress() -> String {
         var address: String?
