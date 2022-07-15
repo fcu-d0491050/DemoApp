@@ -30,6 +30,11 @@ class LoginVC: UIViewController {
         subscribeSubject()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disposeBag = DisposeBag()
+    }
+    
     private func subscribeSubject() {
         
         self.viewModel?.appConfigSubject
