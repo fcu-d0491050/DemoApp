@@ -83,4 +83,14 @@ extension APIManager {
         let body = ["ip": ip] as [String : Any]
         return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.ipVerify, headers: headers, body: body)
     }
+    
+    func getGameList() -> Observable<JSON> {
+        let headers = [
+            "Lang": "zh_CN"]
+        let body = ["site_id" : 1,
+                    "currency" : "RMB",
+                    "suppory_device" : 2,
+                    "template": "H5_1_mobile"] as [String : Any]
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body)
+    }
 }

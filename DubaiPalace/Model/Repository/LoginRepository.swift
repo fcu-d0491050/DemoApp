@@ -6,12 +6,15 @@
 //
 
 import RxSwift
+import Network
+import UIKit
 
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
     func sendLog(content: ContentData) -> Observable<LogDetail>
     func checkLink() -> Observable<Result<Bool>>
     func ipVerify(_ ip : String) -> Observable<Result<Bool>>
+    func getGameList() -> Observable<Result<[GameList]>>
 }
 
 public class LoginRepository {
@@ -87,6 +90,49 @@ extension LoginRepository: LoginRepositoryInterface {
                 subject.onError(error)
             }).disposed(by: disposeBag)
         return subject.asObserver()
+    }
+    
+    public func getGameList() -> Observable<Result<[GameList]>> {
+        let subject = PublishSubject<Result<[GameList]>>()
+        apiManager.getGameList()
+            .subscribe(onNext: { apiResult in
+                let dataArray = apiResult["body"]["data"].array ?? []
+                let gameList = dataArray.map { gameInfo -> GameList in
+                    let gpArray = gameInfo["gp_list"].array ?? []
+                    let gpList = gpArray.map { gpInfo -> gp in
+                        let gp = gp(gpID: gpInfo["gp_id"].stringValue,
+                                    gtID: gpInfo["gt_id"].intValue,
+                                    house: gpInfo["house"].stringValue,
+                                    gameType: gpInfo["game_type"].stringValue,
+                                    gameCode: gpInfo["game_code"].stringValue,
+                                    gameName: gpInfo["game_name"].stringValue,
+                                    gtSort: gpInfo["gt_sort"].intValue,
+                                    gpName: gpInfo["gp_name"].stringValue,
+                                    gpGtName: gpInfo["gp_gt_name"].stringValue,
+                                    gpGtSort: gpInfo["gp_gt_sort"].intValue,
+                                    banner: gpInfo["banner"].stringValue,
+                                    customized: gpInfo["customized"].intValue,
+                                    iconLight: gpInfo["icon_light"].stringValue,
+                                    iconDark: gpInfo["icon_dark"].stringValue)
+                        return gp
+                    }
+                    let gameList = GameList(gtID: gameInfo["gt_id"].intValue,
+                                            gtName: gameInfo["gt_name"].stringValue,
+                                            gtShortName: gameInfo["gt_name_short"].stringValue,
+                                            gtIcon: gameInfo["gt_icon"].stringValue,
+                                            gtActiveIcon: gameInfo["gt_icon_active"].stringValue,
+                                            gpList: gpList)
+                    return gameList
+                }
+                
+                let result = Result(data: gameList, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
+                subject.onNext(result)
+                
+            }, onError: { error in
+                subject.onError(error)
+            }).disposed(by: disposeBag)
+        return subject.asObserver()
+        
     }
     
 }

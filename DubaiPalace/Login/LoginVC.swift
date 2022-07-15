@@ -75,7 +75,7 @@ class LoginVC: UIViewController {
                 //status後三碼為100即為成功，非100為其他錯誤碼
                 if result.apiResult.status.suffix(3) == "100" {
                     if result.data {
-                        print(result.apiResult.status.suffix(3))
+                        self.viewModel?.getGameList()
                     } else {
                         print(result.apiResult.status.suffix(3))
                     }
@@ -84,6 +84,13 @@ class LoginVC: UIViewController {
                 }
                 print(result)
             }).disposed(by: disposeBag)
+        
+        self.viewModel?.gameListSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { result in
+                print(result)
+            }).disposed(by: disposeBag)
+        
         
         //apprdtest01, qwe123
         

@@ -28,6 +28,9 @@ protocol LoginVMInterface {
     var ipVerifySubject: PublishSubject<Result<Bool>> { get }
     func ipVerify(_ ip: String)
     
+    var gameListSubject: PublishSubject<Result<[GameList]>> { get }
+    func getGameList()
+    
 }
 
 class LoginVM {
@@ -35,6 +38,7 @@ class LoginVM {
     let sendLogSubject = PublishSubject<LogDetail>()
     let checkLinkSubject = PublishSubject<Result<Bool>>()
     let ipVerifySubject = PublishSubject<Result<Bool>>()
+    let gameListSubject = PublishSubject<Result<[GameList]>>()
     
     private let loginRepository: LoginRepositoryInterface
     private let disposeBag = DisposeBag()
@@ -71,6 +75,13 @@ extension LoginVM: LoginVMInterface {
         loginRepository.ipVerify(ip)
             .subscribe(onNext: { result in
                 self.ipVerifySubject.onNext(result)
+            }).disposed(by: disposeBag)
+    }
+    
+    func getGameList() {
+        loginRepository.getGameList()
+            .subscribe(onNext: { result in
+                self.gameListSubject.onNext(result)
             }).disposed(by: disposeBag)
     }
 }

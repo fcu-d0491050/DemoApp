@@ -1,5 +1,5 @@
 //
-//  APIResult.swift
+//  Result.swift
 //  DubaiPalace
 //
 //  Created by user on 2022/7/14.
