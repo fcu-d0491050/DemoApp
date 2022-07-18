@@ -14,19 +14,42 @@ class APIManager {
     
     static let shared = APIManager()
     
-    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: [String:String] = [:], body: [String:Any]?) -> Observable<JSON> {
+    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: [String:String] = [:], body: [String:Any]?, isJsonBody: Bool = false) -> Observable<JSON> {
         
-        let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default)
-        return _request.responseData().map { (response, data) in
-            do {
-                let jsonObj = try JSON(data: data)
-                return jsonObj
+        if isJsonBody {
+            var request = URLRequest(url: URL(string: ModelSingleton.shared.requestUrl + APIInfo.gameListV3)!)
+            request.httpMethod = httpMethod.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            if let jsonData = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted) {
+                request.httpBody = jsonData
             }
-            catch let Error {
-                print("Error: \(Error)")
-                throw Error
+            
+            return RxAlamofire.request(request).responseData().map { (response, data) in
+                do {
+                    let jsonObj = try JSON(data: data)
+                    return jsonObj
+                }
+                catch let Error {
+                    print("Error: \(Error)")
+                    throw Error
+                }
+            }
+        } else {
+            let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default)
+            return _request.responseData().map { (response, data) in
+                do {
+                    let jsonObj = try JSON(data: data)
+                    return jsonObj
+                }
+                catch let Error {
+                    print("Error: \(Error)")
+                    throw Error
+                }
             }
         }
+        
+        
     }
     
 }
@@ -89,8 +112,10 @@ extension APIManager {
             "Lang": "zh_CN"]
         let body = ["site_id" : 1,
                     "currency" : "RMB",
-                    "suppory_device" : 2,
+                    "support_device" : 2,
                     "template": "H5_1_mobile"] as [String : Any]
-        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body)
+        
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body, isJsonBody: true)
+        
     }
 }

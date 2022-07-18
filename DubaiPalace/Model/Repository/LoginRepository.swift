@@ -97,7 +97,7 @@ extension LoginRepository: LoginRepositoryInterface {
         apiManager.getGameList()
             .subscribe(onNext: { apiResult in
                 let dataArray = apiResult["body"]["data"].array ?? []
-                let gameList = dataArray.map { gameInfo -> GameList in
+                let gameArray = dataArray.map { gameInfo -> GameList in
                     let gpArray = gameInfo["gp_list"].array ?? []
                     let gpList = gpArray.map { gpInfo -> gp in
                         let gp = gp(gpID: gpInfo["gp_id"].stringValue,
@@ -125,7 +125,7 @@ extension LoginRepository: LoginRepositoryInterface {
                     return gameList
                 }
                 
-                let result = Result(data: gameList, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
+                let result = Result(data: gameArray, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
                 subject.onNext(result)
                 
             }, onError: { error in
