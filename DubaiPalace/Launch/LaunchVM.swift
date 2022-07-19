@@ -1,13 +1,20 @@
 //
-//  LoginVM.swift
+//  LaunchVM.swift
 //  DubaiPalace
 //
-//  Created by user on 2022/7/13.
+//  Created by user on 2022/7/19.
 //
 
 import RxSwift
 
-protocol LoginVMInterface {
+enum LogStatus {
+    case afterAppConfig
+    case beforeCheckLink
+    case afterCheckLink
+    case none
+}
+
+protocol LaunchVMInterface {
     
     var appConfigSubject: PublishSubject<AppConfig> { get }
     func postAppConfig()
@@ -26,7 +33,7 @@ protocol LoginVMInterface {
     
 }
 
-class LoginVM {
+class LaunchVM {
     let appConfigSubject = PublishSubject<AppConfig>()
     let sendLogSubject = PublishSubject<LogDetail>()
     let checkLinkSubject = PublishSubject<Result<Bool>>()
@@ -41,7 +48,7 @@ class LoginVM {
     }
 }
 
-extension LoginVM: LoginVMInterface {
+extension LaunchVM: LaunchVMInterface {
     
     func postAppConfig() {
         loginRepository.postAppConfig()
@@ -78,3 +85,4 @@ extension LoginVM: LoginVMInterface {
             }).disposed(by: disposeBag)
     }
 }
+

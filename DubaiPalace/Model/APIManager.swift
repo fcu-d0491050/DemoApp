@@ -66,23 +66,23 @@ extension APIManager {
     
     func sendLog(content: ContentData) -> Observable<JSON> {
         var _jsonString = ""
-        let dic = ["useful": ["cpu_used" : content.mobileInfo.cpuUsed,
-                              "mem_free" : content.mobileInfo.memFree,
-                              "device_name" : content.mobileInfo.deviceName,
-                              "access" : content.mobileInfo.access,
-                              "useful_space" : content.mobileInfo.usefulSpace,
-                              "nt_operator_name" : content.mobileInfo.operatorName,
-                              "mem_used" : content.mobileInfo.memUsed],
-                   "datas": ["user_agent" : content.appInfo.userAgent,
-                             "phone_start_time" : content.appInfo.phoneStartTime,
-                             "status" : content.appInfo.stauts,
-                             "appapp" : content.appInfo.appKey,
-                             "log_id" : content.appInfo.logID,
-                             "device_id" : content.appInfo.deviceID,
-                             "response" : content.appInfo.response,
-                             "sess_id" : content.appInfo.sessID,
-                             "request_url" : content.appInfo.requestUrl,
-                             "phone_end_time" : content.appInfo.phoneEndTime
+        let dic = ["useful": ["cpu_used" : content.mobileInfo?.cpuUsed,
+                              "mem_free" : content.mobileInfo?.memFree,
+                              "device_name" : content.mobileInfo?.deviceName,
+                              "access" : content.mobileInfo?.access,
+                              "useful_space" : content.mobileInfo?.usefulSpace,
+                              "nt_operator_name" : content.mobileInfo?.operatorName,
+                              "mem_used" : content.mobileInfo?.memUsed],
+                   "datas": ["user_agent" : content.appInfo?.userAgent,
+                             "phone_start_time" : content.appInfo?.phoneStartTime,
+                             "status" : content.appInfo?.stauts,
+                             "appapp" : content.appInfo?.appKey,
+                             "log_id" : content.appInfo?.logID,
+                             "device_id" : content.appInfo?.deviceID,
+                             "response" : content.appInfo?.response,
+                             "sess_id" : content.appInfo?.sessID,
+                             "request_url" : content.appInfo?.requestUrl,
+                             "phone_end_time" : content.appInfo?.phoneEndTime
                             ]]
         
         if let jsonData = try? JSONEncoder().encode(dic) {

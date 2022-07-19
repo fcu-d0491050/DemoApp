@@ -6,8 +6,8 @@
 //
 
 public struct ContentData {
-    var mobileInfo: MobileInfo
-    var appInfo: AppInfo
+    var mobileInfo: MobileInfo?
+    var appInfo: AppInfo?
     
 }
 

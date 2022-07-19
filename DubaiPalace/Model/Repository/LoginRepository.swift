@@ -96,9 +96,9 @@ extension LoginRepository: LoginRepositoryInterface {
         let subject = PublishSubject<Result<[GameList]>>()
         apiManager.getGameList()
             .subscribe(onNext: { apiResult in
-                let dataArray = apiResult["body"]["data"].array ?? []
+                let dataArray = apiResult["body"]["data"].arrayValue
                 let gameArray = dataArray.map { gameInfo -> GameList in
-                    let gpArray = gameInfo["gp_list"].array ?? []
+                    let gpArray = gameInfo["gp_list"].arrayValue
                     let gpList = gpArray.map { gpInfo -> gp in
                         let gp = gp(gpID: gpInfo["gp_id"].stringValue,
                                     gtID: gpInfo["gt_id"].intValue,
@@ -126,8 +126,8 @@ extension LoginRepository: LoginRepositoryInterface {
                 }
                 
                 let result = Result(data: gameArray, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
+                ModelSingleton.shared.setGameList(gameArray)
                 subject.onNext(result)
-                
             }, onError: { error in
                 subject.onError(error)
             }).disposed(by: disposeBag)
@@ -136,3 +136,7 @@ extension LoginRepository: LoginRepositoryInterface {
     }
     
 }
+
+//let KEY_CODE = "ndbpp"
+//let APP_API_KEY = "6d2add3b7474ff72"
+//let APP_SECRET_KEY = "b3f12ec27eca12073641821fbbbb442c"
