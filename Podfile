@@ -9,6 +9,7 @@ target 'DubaiPalace' do
   pod 'SwiftyJSON'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'IQKeyboardManagerSwift'
   # Pods for DubaiPalace
   
 end
