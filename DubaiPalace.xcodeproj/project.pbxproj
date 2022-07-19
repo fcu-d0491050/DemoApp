@@ -47,6 +47,7 @@
 		CE7619922886544300B3CCDE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CE7619932886544300B3CCDE /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		CE7619982886793400B3CCDE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE76199A288690F200B3CCDE /* Swift-Bridge-Objective-C.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridge-Objective-C.h"; sourceTree = "<group>"; };
 		CEE7D724287D38D900E8D625 /* DubaiPalace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubaiPalace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE7D727287D38D900E8D625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE7D729287D38D900E8D625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +120,10 @@
 		CEE7D71B287D38D800E8D625 = {
 			isa = PBXGroup;
 			children = (
+				CE76199A288690F200B3CCDE /* Swift-Bridge-Objective-C.h */,
+				CEE7D727287D38D900E8D625 /* AppDelegate.swift */,
+				CEE7D729287D38D900E8D625 /* SceneDelegate.swift */,
+				CE7619982886793400B3CCDE /* LaunchScreen.storyboard */,
 				CEE7D726287D38D900E8D625 /* DubaiPalace */,
 				CEE7D725287D38D900E8D625 /* Products */,
 				D646805DD03FAEF342B63A5C /* Pods */,
@@ -137,9 +142,6 @@
 		CEE7D726287D38D900E8D625 /* DubaiPalace */ = {
 			isa = PBXGroup;
 			children = (
-				CEE7D727287D38D900E8D625 /* AppDelegate.swift */,
-				CEE7D729287D38D900E8D625 /* SceneDelegate.swift */,
-				CE7619982886793400B3CCDE /* LaunchScreen.storyboard */,
 				CEE7D730287D38DE00E8D625 /* Assets.xcassets */,
 				CEE7D895287D3DD800E8D625 /* Model */,
 				CE7619882886498500B3CCDE /* Launch */,
@@ -431,7 +433,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joliangel288.DubaiPalace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Documents/GitHub/DemoApp/Swift-Bridge-Objective-C.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,7 +455,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = joliangel288.DubaiPalace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Documents/GitHub/DemoApp/Swift-Bridge-Objective-C.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

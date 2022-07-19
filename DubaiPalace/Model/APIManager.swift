@@ -118,4 +118,6 @@ extension APIManager {
         return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body, isJsonBody: true)
         
     }
+    
+   
 }

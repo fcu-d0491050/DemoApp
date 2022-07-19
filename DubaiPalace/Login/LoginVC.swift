@@ -10,7 +10,6 @@ import RxSwift
 import CoreTelephony
 import Network
 
-
 class LoginVC: UIViewController {
     
     private var viewModel: LoginVM?
