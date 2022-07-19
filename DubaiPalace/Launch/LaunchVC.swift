@@ -153,13 +153,6 @@ class LaunchVC: UIViewController {
 
 extension LaunchVC {
     
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "提示", message: "\(message)", preferredStyle: .alert)
-        let updateAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(updateAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     private func getIPAddress() -> String {
         var address: String?
         var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil

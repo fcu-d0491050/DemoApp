@@ -22,6 +22,7 @@
 		CE7619942886544300B3CCDE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7619922886544300B3CCDE /* LoginVC.swift */; };
 		CE7619952886544300B3CCDE /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7619932886544300B3CCDE /* LoginVC.xib */; };
 		CE7619992886793400B3CCDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7619982886793400B3CCDE /* LaunchScreen.storyboard */; };
+		CE761B912886A86900B3CCDE /* Extension_Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE761B902886A86900B3CCDE /* Extension_Localization.swift */; };
 		CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D727287D38D900E8D625 /* AppDelegate.swift */; };
 		CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D729287D38D900E8D625 /* SceneDelegate.swift */; };
 		CEE7D731287D38DE00E8D625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE7D730287D38DE00E8D625 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		CE7619932886544300B3CCDE /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		CE7619982886793400B3CCDE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE76199A288690F200B3CCDE /* Swift-Bridge-Objective-C.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridge-Objective-C.h"; sourceTree = "<group>"; };
+		CE761B902886A86900B3CCDE /* Extension_Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Localization.swift; sourceTree = "<group>"; };
 		CEE7D724287D38D900E8D625 /* DubaiPalace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubaiPalace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE7D727287D38D900E8D625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE7D729287D38D900E8D625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		CE761A952886A79C00B3CCDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE761B902886A86900B3CCDE /* Extension_Localization.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CEE7D71B287D38D800E8D625 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 				CEE7D895287D3DD800E8D625 /* Model */,
 				CE7619882886498500B3CCDE /* Launch */,
 				CE76167C287E6C6800B3CCDE /* Login */,
+				CE761A952886A79C00B3CCDE /* Extensions */,
 				CEE7D735287D38DE00E8D625 /* Info.plist */,
 			);
 			path = DubaiPalace;
@@ -281,6 +292,7 @@
 				CE761680287E790C00B3CCDE /* APIInfo.swift in Sources */,
 				CE76167A287E691400B3CCDE /* LoginRepository.swift in Sources */,
 				CE7619942886544300B3CCDE /* LoginVC.swift in Sources */,
+				CE761B912886A86900B3CCDE /* Extension_Localization.swift in Sources */,
 				CE7616912880261D00B3CCDE /* Result.swift in Sources */,
 				CE7618872881604300B3CCDE /* GameList.swift in Sources */,
 				CE761684287EAB8B00B3CCDE /* ContentData.swift in Sources */,
