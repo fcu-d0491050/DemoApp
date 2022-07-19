@@ -19,23 +19,37 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LoginVC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNC-Uv-NdA">
-                    <rect key="frame" x="175.5" y="442.5" width="63.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4F-Ib-V4q">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_big_zh" translatesAutoresizingMaskIntoConstraints="NO" id="U6c-2A-X9y">
+                            <rect key="frame" x="50" y="140" width="314" height="140"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="140" id="zlE-xH-T2Y"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1815914327623388" green="0.12825119911880206" blue="0.069794367290537854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="U6c-2A-X9y" firstAttribute="top" secondItem="X4F-Ib-V4q" secondAttribute="top" constant="140" id="3Bm-u0-Pcm"/>
+                        <constraint firstAttribute="trailing" secondItem="U6c-2A-X9y" secondAttribute="trailing" constant="50" id="pCB-2G-ExC"/>
+                        <constraint firstItem="U6c-2A-X9y" firstAttribute="leading" secondItem="X4F-Ib-V4q" secondAttribute="leading" constant="50" id="s9I-YO-5VY"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="jNC-Uv-NdA" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="IjN-v9-MAL"/>
-                <constraint firstItem="jNC-Uv-NdA" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="bnH-vk-6Tu"/>
+                <constraint firstItem="X4F-Ib-V4q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rzw-fn-bUM"/>
+                <constraint firstAttribute="bottom" secondItem="X4F-Ib-V4q" secondAttribute="bottom" id="VD1-5m-1Ko"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="X4F-Ib-V4q" secondAttribute="trailing" id="gQj-hO-4yV"/>
+                <constraint firstItem="X4F-Ib-V4q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qBm-lx-bmp"/>
             </constraints>
-            <point key="canvasLocation" x="-536" y="-303"/>
+            <point key="canvasLocation" x="-536.231884057971" y="-303.34821428571428"/>
         </view>
     </objects>
     <resources>
+        <image name="logo_big_zh" width="514.33331298828125" height="82.666664123535156"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

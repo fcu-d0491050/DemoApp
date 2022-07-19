@@ -99,7 +99,6 @@ class LaunchVC: UIViewController {
                 } else {
                     self.showAlert(message: "錯誤：status後三碼非100")
                 }
-                print(result)
             }).disposed(by: disposeBag)
         
         self.viewModel?.gameListSubject

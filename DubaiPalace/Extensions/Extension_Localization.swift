@@ -18,12 +18,23 @@ extension UIViewController {
     }
 }
 
-extension Data {
+extension UITextField{
+    @IBInspectable var placeHolderColor: UIColor? {
+        get {
+            return self.placeHolderColor
+        }
+        set {
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+        }
+    }
+}
 
+extension Data {
+    
     var hexString: String {
         return map { String(format: "%02hhx", $0) }.joined()
     }
-
+    
     var sha256: Data {
         var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
         self.withUnsafeBytes({
@@ -31,13 +42,13 @@ extension Data {
         })
         return Data(bytes: digest)
     }
-
+    
 }
 
 extension String {
-
+    
     func sha256(salt: String) -> Data {
         return (self + salt).data(using: .utf8)!.sha256
     }
-
+    
 }
