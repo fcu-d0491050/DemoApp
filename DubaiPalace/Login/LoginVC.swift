@@ -11,10 +11,14 @@ import SwiftVideoBackground
 
 class LoginVC: UIViewController {
     
+    private var showPassword: Bool = false
     private var viewModel: LoginVM?
     private var disposeBag = DisposeBag()
     
     @IBOutlet weak var videoBackground: UIView!
+    @IBOutlet weak var pwdTxtField: UITextField!
+    @IBOutlet weak var pwdEyeBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
@@ -32,6 +36,28 @@ class LoginVC: UIViewController {
         super.viewWillDisappear(animated)
         disposeBag = DisposeBag()
     }
+    
+    @IBAction func showPasswordAction(_ sender: Any) {
+        switch showPassword {
+        case true:
+            pwdTxtField.isSecureTextEntry = false
+            pwdEyeBtn.setImage(UIImage(named: "icon_open"), for: .normal)
+        case false:
+            pwdTxtField.isSecureTextEntry = true
+            pwdEyeBtn.setImage(UIImage(named: "icon_close"), for: .normal)
+        }
+        showPassword = !showPassword
+    }
+    
+    
+    @IBAction func didClickLoginBtn(_ sender: Any) {
+        
+    }
+    
+    @IBAction func didClickBrowseBtn(_ sender: Any) {
+        
+    }
+    
     
     private func subscribeSubject() {
         
