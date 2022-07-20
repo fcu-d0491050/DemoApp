@@ -94,8 +94,7 @@ class LaunchVC: UIViewController {
                     if result.data {
                         self.viewModel?.getGameList()
                     } else {
-                        print(result.apiResult.status.suffix(3))
-                    }
+                        self.showAlert(message: "錯誤：IP Check Result is False")                    }
                 } else {
                     self.showAlert(message: "錯誤：status後三碼非100")
                 }
@@ -104,9 +103,14 @@ class LaunchVC: UIViewController {
         self.viewModel?.gameListSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
-                self.progressView.progress = 1
-                let vc = LoginVC()
-                self.navigationController?.pushViewController(vc, animated: false)
+                //status後三碼為100即為成功，非100為其他錯誤碼
+                if result.apiResult.status.suffix(3) == "100" {
+                    self.progressView.progress = 1
+                    let vc = LoginVC()
+                    self.navigationController?.pushViewController(vc, animated: false)
+                } else {
+                    self.showAlert(message: result.apiResult.description)
+                }
             }).disposed(by: disposeBag)
         
         
