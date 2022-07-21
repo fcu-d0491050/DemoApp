@@ -10,4 +10,5 @@ public struct APIInfo {
     static let SendLog = "http://appctl.bckappts.info/app_log/apl_insertweilog.php"
     static let ipVerify = "api/ip/verify"
     static let gameListV3 = "api/v3/game_list"
+    static let login = "api/login/app"
 }

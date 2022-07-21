@@ -15,6 +15,7 @@ public protocol LoginRepositoryInterface {
     func checkLink() -> Observable<Result<Bool>>
     func ipVerify(_ ip : String) -> Observable<Result<Bool>>
     func getGameList() -> Observable<Result<[GameList]>>
+    func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<Result<MemberInfo>>
 }
 
 public class LoginRepository {
@@ -135,8 +136,16 @@ extension LoginRepository: LoginRepositoryInterface {
         
     }
     
+    public func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<Result<MemberInfo>> {
+        let subject = PublishSubject<Result<MemberInfo>>()
+        apiManager.accountLogin(account: account, password: password, sign: sign, timeStamp: timeStamp)
+            .subscribe(onNext: { apiResult in
+                let data = MemberInfo(id: apiResult["body"]["member_id"].intValue, loginID: apiResult["body"]["member_login_id"].intValue, currency: apiResult["body"]["member_currency"].stringValue)
+                let result = Result(data: data, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
+                subject.onNext(result)
+            }, onError: { error in
+                subject.onError(error)
+            }).disposed(by: disposeBag)
+        return subject.asObserver()
+    }
 }
-
-//let KEY_CODE = "ndbpp"
-//let APP_API_KEY = "6d2add3b7474ff72"
-//let APP_SECRET_KEY = "b3f12ec27eca12073641821fbbbb442c"

@@ -148,6 +148,7 @@ class LaunchVC: UIViewController {
         contentData.appInfo?.phoneEndTime = String(timeInterval)
         contentData.appInfo?.stauts = "2"
         contentData.appInfo?.logID = self.logID
+        contentData.appInfo?.response = "{\"status\":1}"
         contentData.appInfo?.requestUrl = ModelSingleton.shared.requestUrl
         self.viewModel?.sendLog(content: contentData, status: self.status)
     }

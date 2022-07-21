@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="DubaiPalace" customModuleProvider="target">
             <connections>
+                <outlet property="accountTxtField" destination="tiR-mB-vad" id="4FZ-D3-rxb"/>
                 <outlet property="pwdEyeBtn" destination="XQr-IB-7gt" id="PdH-AB-daH"/>
                 <outlet property="pwdTxtField" destination="aSJ-fr-yfe" id="f2f-QR-MFk"/>
                 <outlet property="videoBackground" destination="h39-96-ZdK" id="Dqn-gj-7Qy"/>

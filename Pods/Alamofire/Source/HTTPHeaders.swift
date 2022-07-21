@@ -144,10 +144,10 @@ public struct HTTPHeaders {
 }
 
 extension HTTPHeaders: ExpressibleByDictionaryLiteral {
-    public init(dictionaryLiteral elements: (String, String)...) {
+    public init(dictionaryLiteral elements: (String, Any)...) {
         self.init()
 
-        elements.forEach { update(name: $0.0, value: $0.1) }
+        elements.forEach { update(name: $0.0, value: String(describing: $0.1)) }
     }
 }
 

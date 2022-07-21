@@ -6,32 +6,17 @@
 //
 
 import RxSwift
+import Foundation
 
 protocol LoginVMInterface {
     
-    var appConfigSubject: PublishSubject<AppConfig> { get }
-    func postAppConfig()
-    
-    var sendLogSubject: PublishSubject<LogDetail> { get }
-    func sendLog(content: ContentData, status: LogStatus)
-    
-    var checkLinkSubject: PublishSubject<Result<Bool>> { get }
-    func checkLink()
-    
-    var ipVerifySubject: PublishSubject<Result<Bool>> { get }
-    func ipVerify(_ ip: String)
-    
-    var gameListSubject: PublishSubject<Result<[GameList]>> { get }
-    func getGameList()
-    
+    var loginSubject: PublishSubject<Result<MemberInfo>> { get }
+    func accountLogin(ac: String, pwd: String, sign: String, timeStamp: String)
 }
 
 class LoginVM {
-    let appConfigSubject = PublishSubject<AppConfig>()
-    let sendLogSubject = PublishSubject<LogDetail>()
-    let checkLinkSubject = PublishSubject<Result<Bool>>()
-    let ipVerifySubject = PublishSubject<Result<Bool>>()
-    let gameListSubject = PublishSubject<Result<[GameList]>>()
+   
+    let loginSubject = PublishSubject<Result<MemberInfo>>()
     
     private let loginRepository: LoginRepositoryInterface
     private let disposeBag = DisposeBag()
@@ -42,39 +27,14 @@ class LoginVM {
 }
 
 extension LoginVM: LoginVMInterface {
-    
-    func postAppConfig() {
-        loginRepository.postAppConfig()
+
+    func accountLogin(ac: String, pwd: String, sign: String, timeStamp: String) {
+        loginRepository.accountLogin(account: ac, password: pwd, sign: sign, timeStamp: timeStamp)
             .subscribe(onNext: { result in
-                self.appConfigSubject.onNext(result)
+                self.loginSubject.onNext(result)
             }).disposed(by: disposeBag)
     }
     
-    func sendLog(content: ContentData, status: LogStatus) {
-        loginRepository.sendLog(content: content)
-            .subscribe(onNext: { result in
-                self.sendLogSubject.onNext(result)
-            }).disposed(by: disposeBag)
-    }
     
-    func checkLink() {
-        loginRepository.checkLink()
-            .subscribe(onNext: { result in
-                self.checkLinkSubject.onNext(result)
-            }).disposed(by: disposeBag)
-    }
-    
-    func ipVerify(_ ip: String) {
-        loginRepository.ipVerify(ip)
-            .subscribe(onNext: { result in
-                self.ipVerifySubject.onNext(result)
-            }).disposed(by: disposeBag)
-    }
-    
-    func getGameList() {
-        loginRepository.getGameList()
-            .subscribe(onNext: { result in
-                self.gameListSubject.onNext(result)
-            }).disposed(by: disposeBag)
-    }
+  
 }

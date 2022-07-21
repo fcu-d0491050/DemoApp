@@ -16,13 +16,13 @@ class LoginVC: UIViewController {
     private var disposeBag = DisposeBag()
     
     @IBOutlet weak var videoBackground: UIView!
+    @IBOutlet weak var accountTxtField: UITextField!
     @IBOutlet weak var pwdTxtField: UITextField!
     @IBOutlet weak var pwdEyeBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
-        try? VideoBackground.shared.play(view: videoBackground, videoName: "login", videoType: "mp4", darkness: 0.50)
+        self.initView()
         self.viewModel = LoginVM()
         // Do any additional setup after loading the view.
     }
@@ -51,17 +51,45 @@ class LoginVC: UIViewController {
     
     
     @IBAction func didClickLoginBtn(_ sender: Any) {
+        let account = accountTxtField.text ?? ""
+        let password = pwdTxtField.text ?? ""
+        guard !account.isEmpty else {
+            showAlert(message: "用户名不能为空")
+            return
+        }
+        guard !password.isEmpty else {
+            showAlert(message: "密码不能为空")
+            return
+        }
         
+        let timeInterval: TimeInterval = Date().timeIntervalSince1970
+        let timeStamp = Int(timeInterval)
+        
+        let clearString = """
+                {"api_key":"\(AppKey.ApiKey)","timestamp":\(timeStamp)}
+                """
+        
+        let sign = clearString.hmac(algorithm: HMACAlgorithm.SHA256, key: AppKey.SecretKey)
+        self.viewModel?.accountLogin(ac: account, pwd: password, sign: sign, timeStamp: String(timeStamp))
     }
     
     @IBAction func didClickBrowseBtn(_ sender: Any) {
         
     }
     
+    private func initView() {
+        self.navigationItem.hidesBackButton = true
+        try? VideoBackground.shared.play(view: videoBackground, videoName: "login", videoType: "mp4", darkness: 0.50)
+    }
     
     private func subscribeSubject() {
         
-        //apprdtest01, qwe123
+        self.viewModel?.loginSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { result in
+                //apprdtest01, qwe123
+                print(result)
+            }).disposed(by: disposeBag)
         
     }
     

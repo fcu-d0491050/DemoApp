@@ -14,14 +14,15 @@ class APIManager {
     
     static let shared = APIManager()
     
-    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: [String:String] = [:], body: [String:Any]?, isJsonBody: Bool = false) -> Observable<JSON> {
+    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: HTTPHeaders = [:], body: [String:Any]?, isJsonBody: Bool = false) -> Observable<JSON> {
         
         if isJsonBody {
             var request = URLRequest(url: URL(string: ModelSingleton.shared.requestUrl + APIInfo.gameListV3)!)
             request.httpMethod = httpMethod.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.headers = headers
             
-            if let jsonData = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted) {
+            if let jsonData = try? JSONSerialization.data(withJSONObject: body ?? [:], options: .prettyPrinted) {
                 request.httpBody = jsonData
             }
             
@@ -36,7 +37,7 @@ class APIManager {
                 }
             }
         } else {
-            let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default)
+            let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default, headers: headers)
             return _request.responseData().map { (response, data) in
                 do {
                     let jsonObj = try JSON(data: data)
@@ -102,14 +103,14 @@ extension APIManager {
     
     func ipVerify(ip: String) -> Observable<JSON> {
         let headers = [
-            "Lang": "zh_CN"]
+            "Lang": "zh_CN"] as HTTPHeaders
         let body = ["ip": ip] as [String : Any]
         return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.ipVerify, headers: headers, body: body)
     }
     
     func getGameList() -> Observable<JSON> {
         let headers = [
-            "Lang": "zh_CN"]
+            "Lang": "zh_CN"] as HTTPHeaders
         let body = ["site_id" : 1,
                     "currency" : "RMB",
                     "support_device" : 2,
@@ -117,6 +118,25 @@ extension APIManager {
         
         return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body, isJsonBody: true)
         
+    }
+    
+    func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<JSON> {
+        let headers = ["Lang" : "zh_CN",
+                       "API-KEY" : AppKey.ApiKey,
+                       "SIGN" : sign,
+                       "TIMESTAMP" : timeStamp] as HTTPHeaders
+        let body = ["account": account,
+                    "password": password,
+                    "site_id": 1,
+                    "device": 3,
+                    "login_type": 3,
+                    "system": "iOS",
+                    "system_version": UIDevice.current.systemVersion,
+                    "app_version": "1.8.63",
+                    "host": ModelSingleton.shared.requestUrl,
+                    "udid": UUID().uuidString,
+                    "system_group": 1]  as [String : Any]
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.login, headers: headers, body: body)
     }
     
    

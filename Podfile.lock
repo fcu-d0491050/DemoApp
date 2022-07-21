@@ -1,20 +1,50 @@
 PODS:
   - Alamofire (5.6.1)
+  - IQKeyboardManagerSwift (6.5.10)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SwiftVideoBackground (3.4.0)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.1)
+  - IQKeyboardManagerSwift
+  - RxAlamofire
+  - RxCocoa
+  - RxSwift
+  - SwiftVideoBackground
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IQKeyboardManagerSwift
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SwiftVideoBackground
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SwiftVideoBackground: 826e0567c737ded2a211aa309e9951c643695e8f
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 7b3ae3ef83f400912e6eac2c79b8a36e37f9debe
+PODFILE CHECKSUM: a6e6f600b0750d5ee50c2df51972e2f9ae691c93
 
 COCOAPODS: 1.11.3
