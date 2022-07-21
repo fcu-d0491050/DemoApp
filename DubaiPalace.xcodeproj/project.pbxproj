@@ -27,6 +27,8 @@
 		CE76207D2887CE7700B3CCDE /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76207C2887CE7700B3CCDE /* AppConfig.swift */; };
 		CE76207F2887D0F100B3CCDE /* AppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76207E2887D0F100B3CCDE /* AppKey.swift */; };
 		CE7620812887DD4400B3CCDE /* MemberInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7620802887DD4400B3CCDE /* MemberInfo.swift */; };
+		CE9BBF47288920DC00F754B0 /* LobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BBF45288920DB00F754B0 /* LobbyVC.swift */; };
+		CE9BBF48288920DC00F754B0 /* LobbyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BBF46288920DB00F754B0 /* LobbyVC.xib */; };
 		CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D727287D38D900E8D625 /* AppDelegate.swift */; };
 		CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7D729287D38D900E8D625 /* SceneDelegate.swift */; };
 		CEE7D731287D38DE00E8D625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE7D730287D38DE00E8D625 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		CE76207C2887CE7700B3CCDE /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		CE76207E2887D0F100B3CCDE /* AppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKey.swift; sourceTree = "<group>"; };
 		CE7620802887DD4400B3CCDE /* MemberInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfo.swift; sourceTree = "<group>"; };
+		CE9BBF45288920DB00F754B0 /* LobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyVC.swift; sourceTree = "<group>"; };
+		CE9BBF46288920DB00F754B0 /* LobbyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LobbyVC.xib; sourceTree = "<group>"; };
 		CEE7D724287D38D900E8D625 /* DubaiPalace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubaiPalace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE7D727287D38D900E8D625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE7D729287D38D900E8D625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +139,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CE9BBF44288920B300F754B0 /* Lobby */ = {
+			isa = PBXGroup;
+			children = (
+				CE9BBF45288920DB00F754B0 /* LobbyVC.swift */,
+				CE9BBF46288920DB00F754B0 /* LobbyVC.xib */,
+			);
+			path = Lobby;
+			sourceTree = "<group>";
+		};
 		CEE7D71B287D38D800E8D625 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +178,7 @@
 				CE76168D2880203800B3CCDE /* Entities */,
 				CE7619882886498500B3CCDE /* Launch */,
 				CE76167C287E6C6800B3CCDE /* Login */,
+				CE9BBF44288920B300F754B0 /* Lobby */,
 				CE761A952886A79C00B3CCDE /* Extensions */,
 				CEE7D735287D38DE00E8D625 /* Info.plist */,
 			);
@@ -255,6 +269,7 @@
 				CEE7D731287D38DE00E8D625 /* Assets.xcassets in Resources */,
 				CE7619952886544300B3CCDE /* LoginVC.xib in Resources */,
 				CE761F812887A45100B3CCDE /* login.mp4 in Resources */,
+				CE9BBF48288920DC00F754B0 /* LobbyVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +309,7 @@
 				CE7619862885686900B3CCDE /* LaunchVC.swift in Sources */,
 				CEE7D899287D442200E8D625 /* APIManager.swift in Sources */,
 				CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */,
+				CE9BBF47288920DC00F754B0 /* LobbyVC.swift in Sources */,
 				CE761686287EB2C200B3CCDE /* LogDetail.swift in Sources */,
 				CE7620812887DD4400B3CCDE /* MemberInfo.swift in Sources */,
 				CEE7D72A287D38D900E8D625 /* SceneDelegate.swift in Sources */,

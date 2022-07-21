@@ -113,10 +113,6 @@ class LaunchVC: UIViewController {
                 }
             }).disposed(by: disposeBag)
         
-        
-        //apprdtest01, qwe123
-        
-        
     }
     
     private func sendLogAfterAppConfig(_ appConfig: AppConfig) {
