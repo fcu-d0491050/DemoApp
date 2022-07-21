@@ -14,6 +14,7 @@
                 <outlet property="accountTxtField" destination="tiR-mB-vad" id="4FZ-D3-rxb"/>
                 <outlet property="pwdEyeBtn" destination="XQr-IB-7gt" id="PdH-AB-daH"/>
                 <outlet property="pwdTxtField" destination="aSJ-fr-yfe" id="f2f-QR-MFk"/>
+                <outlet property="rememberMeBtn" destination="OJb-w6-u7J" id="L2B-2n-VgV"/>
                 <outlet property="videoBackground" destination="h39-96-ZdK" id="Dqn-gj-7Qy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -99,8 +100,18 @@
                         <constraint firstAttribute="height" constant="1" id="h4p-0Z-3wZ"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJb-w6-u7J">
+                    <rect key="frame" x="75" y="462" width="64.5" height="19"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="记住我" image="heart" catalog="system"/>
+                    <connections>
+                        <action selector="didClickRememberBtn:" destination="-1" eventType="touchUpInside" id="uSk-86-yHO"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h5-au-0hP">
-                    <rect key="frame" x="80" y="542" width="254" height="40"/>
+                    <rect key="frame" x="80" y="592" width="254" height="40"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Eix-mN-5oT"/>
@@ -118,7 +129,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0D-Ui-D0X">
-                    <rect key="frame" x="80" y="622" width="254" height="40"/>
+                    <rect key="frame" x="80" y="672" width="254" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="nL4-cd-z40"/>
                     </constraints>
@@ -162,13 +173,15 @@
                 <constraint firstItem="h39-96-ZdK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aMg-x6-2ho"/>
                 <constraint firstItem="Fxf-Og-EDi" firstAttribute="trailing" secondItem="XQr-IB-7gt" secondAttribute="trailing" constant="5" id="aYP-Np-qKO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tiR-mB-vad" secondAttribute="trailing" constant="80" id="anN-2v-zhW"/>
+                <constraint firstItem="OJb-w6-u7J" firstAttribute="leading" secondItem="Fxf-Og-EDi" secondAttribute="leading" id="cUt-aB-hCh"/>
                 <constraint firstItem="T0D-Ui-D0X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="80" id="e2D-Zz-Kub"/>
-                <constraint firstItem="2h5-au-0hP" firstAttribute="top" secondItem="Fxf-Og-EDi" secondAttribute="bottom" constant="100" id="fyq-cI-4lj"/>
+                <constraint firstItem="2h5-au-0hP" firstAttribute="top" secondItem="Fxf-Og-EDi" secondAttribute="bottom" constant="150" id="fyq-cI-4lj"/>
                 <constraint firstItem="aSJ-fr-yfe" firstAttribute="leading" secondItem="G9N-SF-l7Z" secondAttribute="trailing" constant="10" id="gVe-Oo-kk2"/>
                 <constraint firstItem="XQr-IB-7gt" firstAttribute="leading" secondItem="aSJ-fr-yfe" secondAttribute="trailing" constant="20" id="jK0-VD-vxb"/>
                 <constraint firstItem="Fxf-Og-EDi" firstAttribute="top" secondItem="G9N-SF-l7Z" secondAttribute="bottom" constant="10" id="jh1-Ud-ntk"/>
                 <constraint firstItem="Fxf-Og-EDi" firstAttribute="leading" secondItem="G9N-SF-l7Z" secondAttribute="leading" constant="-5" id="mHS-wT-GF3"/>
                 <constraint firstItem="2h5-au-0hP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="80" id="qMA-SY-2dY"/>
+                <constraint firstItem="OJb-w6-u7J" firstAttribute="top" secondItem="Fxf-Og-EDi" secondAttribute="bottom" constant="20" id="raw-mE-syJ"/>
                 <constraint firstItem="XQr-IB-7gt" firstAttribute="centerY" secondItem="G9N-SF-l7Z" secondAttribute="centerY" id="tIb-BV-V3z"/>
                 <constraint firstItem="XjV-iZ-P9T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="80" id="uW3-pz-he0"/>
                 <constraint firstItem="U6c-2A-X9y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="vKy-cG-Q3q"/>
@@ -180,6 +193,7 @@
         </view>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="icon_close" width="21.333333969116211" height="21.333333969116211"/>
         <image name="icon_name" width="21.333333969116211" height="21.333333969116211"/>
         <image name="icon_password" width="19.333333969116211" height="20"/>

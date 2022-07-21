@@ -130,7 +130,7 @@ extension APIManager {
         let headers = ["Lang" : "zh_CN",
                        "API-KEY" : AppKey.ApiKey,
                        "SIGN" : sign,
-                       "TIMESTAMP" : timeStamp] as HTTPHeaders
+                       "TIMESTAMP" : "\(timeStamp)"] as HTTPHeaders
         let body = ["account": account,
                     "password": password,
                     "site_id": 1,
