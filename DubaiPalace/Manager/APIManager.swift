@@ -17,7 +17,7 @@ class APIManager {
     static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: HTTPHeaders = [:], body: [String:Any]?, isJsonBody: Bool = false) -> Observable<JSON> {
         
         if isJsonBody {
-            var request = URLRequest(url: URL(string: ModelSingleton.shared.requestUrl + APIInfo.gameListV3)!)
+            var request = URLRequest(url: URL(string: urlString)!)
             request.httpMethod = httpMethod.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.headers = headers
@@ -28,6 +28,7 @@ class APIManager {
             
             return RxAlamofire.request(request).responseData().map { (response, data) in
                 do {
+//                    print(response.allHeaderFields)
                     let jsonObj = try JSON(data: data)
                     return jsonObj
                 }
@@ -40,6 +41,7 @@ class APIManager {
             let _request = request(httpMethod, urlString, parameters: body, encoding: URLEncoding.default, headers: headers)
             return _request.responseData().map { (response, data) in
                 do {
+                    //                    print(response.allHeaderFields)
                     let jsonObj = try JSON(data: data)
                     return jsonObj
                 }
@@ -136,8 +138,7 @@ extension APIManager {
                     "host": ModelSingleton.shared.requestUrl,
                     "udid": UUID().uuidString,
                     "system_group": 1]  as [String : Any]
-        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.login, headers: headers, body: body)
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.login, headers: headers, body: body, isJsonBody: true)
     }
     
-   
 }

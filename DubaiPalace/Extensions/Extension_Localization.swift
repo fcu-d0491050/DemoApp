@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 enum HMACAlgorithm {
     case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
@@ -61,13 +62,7 @@ extension String {
         return String(hmacBase64)
     }
     
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
-    
-    
 }
-
 
 extension UIViewController {
     
