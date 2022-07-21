@@ -11,7 +11,7 @@ import Foundation
 protocol LoginVMInterface {
     
     var loginSubject: PublishSubject<Result<MemberInfo>> { get }
-    func accountLogin(ac: String, pwd: String, sign: String, timeStamp: String)
+    func accountLogin(account: String, password: String, timeStamp: Int)
 }
 
 class LoginVM {
@@ -28,8 +28,8 @@ class LoginVM {
 
 extension LoginVM: LoginVMInterface {
 
-    func accountLogin(ac: String, pwd: String, sign: String, timeStamp: String) {
-        loginRepository.accountLogin(account: ac, password: pwd, sign: sign, timeStamp: timeStamp)
+    func accountLogin(account: String, password: String, timeStamp: Int) {
+        loginRepository.accountLogin(account: account, password: password, timeStamp: timeStamp)
             .subscribe(onNext: { result in
                 self.loginSubject.onNext(result)
             }).disposed(by: disposeBag)

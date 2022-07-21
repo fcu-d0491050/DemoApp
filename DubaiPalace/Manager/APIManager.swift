@@ -122,7 +122,11 @@ extension APIManager {
         
     }
     
-    func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<JSON> {
+    func accountLogin(account: String, password: String, timeStamp: Int) -> Observable<JSON> {
+        let clearString = """
+                {"api_key":"\(AppKey.ApiKey)","timestamp":\(timeStamp)}
+                """
+        let sign = clearString.hmac(algorithm: HMACAlgorithm.SHA256, key: AppKey.SecretKey)
         let headers = ["Lang" : "zh_CN",
                        "API-KEY" : AppKey.ApiKey,
                        "SIGN" : sign,

@@ -12,10 +12,10 @@ import UIKit
 public protocol LoginRepositoryInterface {
     func postAppConfig() -> Observable<AppConfig>
     func sendLog(content: ContentData) -> Observable<LogDetail>
-    func checkLink() -> Observable<Result<Bool>>
+    func checkLink() -> Observable<Bool>
     func ipVerify(_ ip : String) -> Observable<Result<Bool>>
     func getGameList() -> Observable<Result<[GameList]>>
-    func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<Result<MemberInfo>>
+    func accountLogin(account: String, password: String, timeStamp: Int) -> Observable<Result<MemberInfo>>
 }
 
 public class LoginRepository {
@@ -68,11 +68,11 @@ extension LoginRepository: LoginRepositoryInterface {
         return subject.asObserver()
     }
     
-    public func checkLink() -> Observable<Result<Bool>> {
-        let subject = PublishSubject<Result<Bool>>()
+    public func checkLink() -> Observable<Bool> {
+        let subject = PublishSubject<Bool>()
         apiManager.checkLink()
             .subscribe(onNext: { apiResult in
-                let result = Result(data: apiResult["status"].intValue == 1, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))
+                let result = apiResult["status"].intValue == 1
                 subject.onNext(result)
             }, onError: { error in
                 subject.onError(error)
@@ -136,9 +136,9 @@ extension LoginRepository: LoginRepositoryInterface {
         
     }
     
-    public func accountLogin(account: String, password: String, sign: String, timeStamp: String) -> Observable<Result<MemberInfo>> {
+    public func accountLogin(account: String, password: String, timeStamp: Int) -> Observable<Result<MemberInfo>> {
         let subject = PublishSubject<Result<MemberInfo>>()
-        apiManager.accountLogin(account: account, password: password, sign: sign, timeStamp: timeStamp)
+        apiManager.accountLogin(account: account, password: password, timeStamp: timeStamp)
             .subscribe(onNext: { apiResult in
                 let data = MemberInfo(id: apiResult["body"]["member_id"].intValue, loginID: apiResult["body"]["member_login_id"].intValue, currency: apiResult["body"]["member_currency"].stringValue)
                 let result = Result(data: data, apiResult: HeaderResult(status: apiResult["header"]["status"].stringValue, description: apiResult["header"]["desc"].stringValue))

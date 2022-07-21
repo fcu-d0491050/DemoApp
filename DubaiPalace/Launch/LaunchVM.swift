@@ -22,7 +22,7 @@ protocol LaunchVMInterface {
     var sendLogSubject: PublishSubject<LogDetail> { get }
     func sendLog(content: ContentData, status: LogStatus)
     
-    var checkLinkSubject: PublishSubject<Result<Bool>> { get }
+    var checkLinkSubject: PublishSubject<Bool> { get }
     func checkLink()
     
     var ipVerifySubject: PublishSubject<Result<Bool>> { get }
@@ -36,7 +36,7 @@ protocol LaunchVMInterface {
 class LaunchVM {
     let appConfigSubject = PublishSubject<AppConfig>()
     let sendLogSubject = PublishSubject<LogDetail>()
-    let checkLinkSubject = PublishSubject<Result<Bool>>()
+    let checkLinkSubject = PublishSubject<Bool>()
     let ipVerifySubject = PublishSubject<Result<Bool>>()
     let gameListSubject = PublishSubject<Result<[GameList]>>()
     

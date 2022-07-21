@@ -64,13 +64,7 @@ class LoginVC: UIViewController {
         
         let timeInterval: TimeInterval = Date().timeIntervalSince1970
         let timeStamp = Int(timeInterval)
-        
-        let clearString = """
-                {"api_key":"\(AppKey.ApiKey)","timestamp":\(timeStamp)}
-                """
-        
-        let sign = clearString.hmac(algorithm: HMACAlgorithm.SHA256, key: AppKey.SecretKey)
-        self.viewModel?.accountLogin(ac: account, pwd: password, sign: sign, timeStamp: String(timeStamp))
+        self.viewModel?.accountLogin(account: account, password: password, timeStamp: timeStamp)
     }
     
     @IBAction func didClickBrowseBtn(_ sender: Any) {
@@ -87,8 +81,12 @@ class LoginVC: UIViewController {
         self.viewModel?.loginSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
-                //apprdtest01, qwe123
-                print(result)
+                if result.apiResult.status.suffix(3) == "100" {
+                    //登入成功
+                    print("登入成功")
+                } else {
+                    self.showAlert(message: result.apiResult.description)
+                }
             }).disposed(by: disposeBag)
         
     }

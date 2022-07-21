@@ -81,7 +81,7 @@ class LaunchVC: UIViewController {
         self.viewModel?.checkLinkSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { isLinkPass in
-                guard isLinkPass.data else { return } //網頁正常
+                guard isLinkPass else { return } //網頁正常
                 self.status = .afterCheckLink
                 self.sendLogAfterCheckLink()
             }).disposed(by: disposeBag)
