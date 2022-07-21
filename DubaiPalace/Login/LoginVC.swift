@@ -68,6 +68,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             rememberMeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
             UserDefaults.standard.set(false, forKey: "remember")
         }
+        //更新是否儲存帳密
         UserDefaults.standard.synchronize()
     }
     
@@ -112,14 +113,29 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.viewModel?.loginSubject
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { result in
+                //登入成功
                 if result.apiResult.status.suffix(3) == "100" {
-                    //登入成功
+                    //更新帳密儲存資料
                     UserDefaults.standard.synchronize()
                     print("登入成功")
+                    self.viewModel?.getGameList()
                 } else {
                     self.showAlert(message: result.apiResult.description)
                 }
             }).disposed(by: disposeBag)
+        
+        self.viewModel?.gameListSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { result in
+                //登入成功
+                if result.apiResult.status.suffix(3) == "100" {
+                    print("帶入Authorization的遊戲列表")
+                    print(result)
+                } else {
+                    self.showAlert(message: result.apiResult.description)
+                }
+            }).disposed(by: disposeBag)
+        
         
     }
     

@@ -14,7 +14,7 @@ class APIManager {
     
     static let shared = APIManager()
     
-    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: HTTPHeaders = [:], body: [String:Any]?, isJsonBody: Bool = false) -> Observable<JSON> {
+    static func loadAPI(httpMethod: HTTPMethod, urlString: String, headers: HTTPHeaders = [:], body: [String:Any]?, isJsonBody: Bool = false, getAuthorization: Bool = false) -> Observable<JSON> {
         
         if isJsonBody {
             var request = URLRequest(url: URL(string: urlString)!)
@@ -28,7 +28,9 @@ class APIManager {
             
             return RxAlamofire.request(request).responseData().map { (response, data) in
                 do {
-//                    print(response.allHeaderFields)
+                    if getAuthorization {
+                        ModelSingleton.shared.setAuthorization(response.allHeaderFields["Authorization"] as? String ?? "")
+                    }
                     let jsonObj = try JSON(data: data)
                     return jsonObj
                 }
@@ -111,13 +113,20 @@ extension APIManager {
     }
     
     func getGameList() -> Observable<JSON> {
-        let headers = [
-            "Lang": "zh_CN"] as HTTPHeaders
+        var headers = [:] as HTTPHeaders
+        if ModelSingleton.shared.authorization == "" {
+            headers = [
+                "Lang": "zh_CN"]
+        } else {
+            headers = [
+                "Lang": "zh_CN",
+                "Authorization": ModelSingleton.shared.authorization]
+            
+        }
         let body = ["site_id" : 1,
                     "currency" : "RMB",
                     "support_device" : 2,
                     "template": "H5_1_mobile"] as [String : Any]
-        
         return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.gameListV3, headers: headers, body: body, isJsonBody: true)
         
     }
@@ -142,7 +151,7 @@ extension APIManager {
                     "host": ModelSingleton.shared.requestUrl,
                     "udid": UUID().uuidString,
                     "system_group": 1]  as [String : Any]
-        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.login, headers: headers, body: body, isJsonBody: true)
+        return APIManager.loadAPI(httpMethod: .post, urlString: ModelSingleton.shared.requestUrl + APIInfo.login, headers: headers, body: body, isJsonBody: true, getAuthorization: true)
     }
     
 }
