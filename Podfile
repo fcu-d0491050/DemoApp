@@ -11,6 +11,7 @@ target 'DubaiPalace' do
   pod 'RxCocoa'
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftVideoBackground'
+  pod 'netfox'
   # Pods for DubaiPalace
   
 end

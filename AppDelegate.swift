@@ -7,6 +7,9 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+#if DEBUG
+import netfox
+#endif
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enableAutoToolbar = false
+        #if DEBUG
+        NFX.sharedInstance().start()
+        #endif
         return true
     }
 
