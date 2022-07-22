@@ -26,20 +26,50 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uPm-rZ-YEl">
+                    <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Tmb-aH-YIv"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oVB-V4-pAK">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vEZ-o3-4eS">
+                    <rect key="frame" x="0.0" y="144" width="414" height="697"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V4E-AS-UXQ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemYellowColor"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uPm-rZ-YEl" secondAttribute="trailing" id="4yW-l3-POH"/>
+                <constraint firstItem="vEZ-o3-4eS" firstAttribute="top" secondItem="uPm-rZ-YEl" secondAttribute="bottom" id="EZZ-ha-RDK"/>
+                <constraint firstItem="vEZ-o3-4eS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="F4b-RZ-FeE"/>
+                <constraint firstItem="uPm-rZ-YEl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FCx-72-qhY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mWC-OK-PFt" secondAttribute="bottom" id="HJm-Aw-luj"/>
+                <constraint firstItem="mWC-OK-PFt" firstAttribute="top" secondItem="vEZ-o3-4eS" secondAttribute="bottom" id="PlR-jd-n5m"/>
+                <constraint firstItem="uPm-rZ-YEl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ajM-Im-Wag"/>
                 <constraint firstItem="mWC-OK-PFt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c0q-lP-W6d"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vEZ-o3-4eS" secondAttribute="trailing" id="ntw-TP-Zhw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mWC-OK-PFt" secondAttribute="trailing" id="rOf-ap-s7Q"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="72.991071428571431"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

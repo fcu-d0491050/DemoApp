@@ -40,15 +40,6 @@ enum TabPage {
         }
     }
     
-    var navTitle: String {
-        switch self {
-        case .Home:
-            return "首頁大廳"
-        case .User:
-            return "個人資料"
-        }
-    }
-    
     var viewCntroller: UIViewController {
         switch self {
         case .Home:
@@ -73,12 +64,22 @@ class BaseTBC: UITabBarController {
     
     private func initTabBar() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithDefaultBackground()
+            tabBarAppearance.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+        }
         var controllers: [UIViewController] = []
         let pages: [TabPage] = [.Home, .User]
         for page in pages {
             let vc = page.viewCntroller
-            vc.title = page.navTitle
             let navigationController = UINavigationController(rootViewController: vc)
             navigationController.tabBarItem = UITabBarItem(title: page.tabTitle, image: page.tabImg, selectedImage: page.selectedTabImg)
             controllers.append(navigationController)
