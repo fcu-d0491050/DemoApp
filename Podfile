@@ -12,6 +12,7 @@ target 'DubaiPalace' do
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftVideoBackground'
   pod 'netfox'
+  pod 'Kingfisher', '~> 7.0'
   # Pods for DubaiPalace
   
 end
