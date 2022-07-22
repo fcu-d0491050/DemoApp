@@ -72,6 +72,7 @@ class BaseTBC: UITabBarController {
             tabBarAppearance.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             UITabBar.appearance().standardAppearance = tabBarAppearance
 
+            //iOS 15.0 會變透明
             if #available(iOS 15.0, *) {
                 UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
             }

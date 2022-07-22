@@ -30,6 +30,8 @@
 		CE7BD74B288A519F00CE450A /* LobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BD74A288A519F00CE450A /* LobbyVC.swift */; };
 		CE7BD74F288A7B0E00CE450A /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BD74D288A7B0E00CE450A /* ProfileVC.swift */; };
 		CE7BD750288A7B0E00CE450A /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7BD74E288A7B0E00CE450A /* ProfileVC.xib */; };
+		CE7BD84D288AA26A00CE450A /* GameTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BD84B288AA26A00CE450A /* GameTypeCell.swift */; };
+		CE7BD84E288AA26A00CE450A /* GameTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7BD84C288AA26A00CE450A /* GameTypeCell.xib */; };
 		CE9BC23928895FDB00F754B0 /* LobbyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BC23728895FDB00F754B0 /* LobbyVC.xib */; };
 		CE9BC23A28895FDB00F754B0 /* BaseTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BC23828895FDB00F754B0 /* BaseTBC.swift */; };
 		CE9BC23C288A3E6D00F754B0 /* Base.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9BC23B288A3E6D00F754B0 /* Base.storyboard */; };
@@ -66,6 +68,8 @@
 		CE7BD74A288A519F00CE450A /* LobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyVC.swift; sourceTree = "<group>"; };
 		CE7BD74D288A7B0E00CE450A /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CE7BD74E288A7B0E00CE450A /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
+		CE7BD84B288AA26A00CE450A /* GameTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTypeCell.swift; sourceTree = "<group>"; };
+		CE7BD84C288AA26A00CE450A /* GameTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTypeCell.xib; sourceTree = "<group>"; };
 		CE9BC23728895FDB00F754B0 /* LobbyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LobbyVC.xib; sourceTree = "<group>"; };
 		CE9BC23828895FDB00F754B0 /* BaseTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTBC.swift; sourceTree = "<group>"; };
 		CE9BC23B288A3E6D00F754B0 /* Base.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Base.storyboard; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				CE9BC23828895FDB00F754B0 /* BaseTBC.swift */,
 				CE9BC23728895FDB00F754B0 /* LobbyVC.xib */,
 				CE7BD74A288A519F00CE450A /* LobbyVC.swift */,
+				CE7BD84B288AA26A00CE450A /* GameTypeCell.swift */,
+				CE7BD84C288AA26A00CE450A /* GameTypeCell.xib */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				CE7619952886544300B3CCDE /* LoginVC.xib in Resources */,
 				CE761F812887A45100B3CCDE /* login.mp4 in Resources */,
 				CE9BC23C288A3E6D00F754B0 /* Base.storyboard in Resources */,
+				CE7BD84E288AA26A00CE450A /* GameTypeCell.xib in Resources */,
 				CE9BC23928895FDB00F754B0 /* LobbyVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +337,7 @@
 				CE76167E287E6CE200B3CCDE /* LoginVM.swift in Sources */,
 				CE7BD74B288A519F00CE450A /* LobbyVC.swift in Sources */,
 				CE7619862885686900B3CCDE /* LaunchVC.swift in Sources */,
+				CE7BD84D288AA26A00CE450A /* GameTypeCell.swift in Sources */,
 				CEE7D899287D442200E8D625 /* APIManager.swift in Sources */,
 				CEE7D728287D38D900E8D625 /* AppDelegate.swift in Sources */,
 				CE9BC23A28895FDB00F754B0 /* BaseTBC.swift in Sources */,
