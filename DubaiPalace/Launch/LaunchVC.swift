@@ -33,6 +33,7 @@ class LaunchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         subscribeSubject()
     }
     
@@ -96,7 +97,7 @@ class LaunchVC: UIViewController {
                     } else {
                         self.showAlert(message: "錯誤：IP Check Result is False")                    }
                 } else {
-                    self.showAlert(message: "錯誤：status後三碼非100")
+                    self.showAlert(message: result.apiResult.description)
                 }
             }).disposed(by: disposeBag)
         
