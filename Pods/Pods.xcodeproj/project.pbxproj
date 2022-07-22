@@ -650,7 +650,7 @@
 		6C111B282C9567CCF457BF8011159399 /* Single.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Single.swift; path = RxSwift/Traits/PrimitiveSequence/Single.swift; sourceTree = "<group>"; };
 		6C7D12BA01368466248FC663B348D92A /* Lock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lock.swift; path = RxSwift/Concurrency/Lock.swift; sourceTree = "<group>"; };
 		6CA5E78A2BCF2E6E37D02D1E6F155546 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = RxSwift/Observables/Filter.swift; sourceTree = "<group>"; };
-		6D8CDB93561D3B235015E3B4014A69AB /* libSwiftVideoBackground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftVideoBackground.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D8CDB93561D3B235015E3B4014A69AB /* SwiftVideoBackground */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = SwiftVideoBackground; path = libSwiftVideoBackground.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC42E8BCE13F6C5CAE2EB43BB764F71 /* Scan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scan.swift; path = RxSwift/Observables/Scan.swift; sourceTree = "<group>"; };
 		6EF02E28A482D9BB35E69399B87BB2EF /* IQKeyboardManagerConstantsInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManagerConstantsInternal.swift; path = IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstantsInternal.swift; sourceTree = "<group>"; };
 		6F6C84506076F92A2B534D37E614C0A1 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -718,7 +718,7 @@
 		9BB3D79E1F69F69AC50CB935F3746B7D /* Pods-DubaiPalace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DubaiPalace.release.xcconfig"; sourceTree = "<group>"; };
 		9BF6D8D17AA3D2E72367DA9C1F241AD4 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		9D7B63D7A4E67DDBC82A2B0DE1429D1C /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E8865B7B57B275533B5040A97F07877 /* URLRequest+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLRequest+Alamofire.swift"; path = "Source/URLRequest+Alamofire.swift"; sourceTree = "<group>"; };
 		9EE01CB024A4075E23D524363AF24861 /* UIStepper+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStepper+Rx.swift"; path = "RxCocoa/iOS/UIStepper+Rx.swift"; sourceTree = "<group>"; };
 		9F1E57D99C5AE26ACDC0FA74BD7609BF /* RxCocoa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCocoa.swift; path = RxCocoa/RxCocoa.swift; sourceTree = "<group>"; };
@@ -962,6 +962,7 @@
 				487D44D4D204CADD0C00844F97A59CED /* IQUIViewController+Additions.swift */,
 				73D07BC7554A9AAC3739F20F8AAA1FDF /* Support Files */,
 			);
+			name = IQKeyboardManagerSwift;
 			path = IQKeyboardManagerSwift;
 			sourceTree = "<group>";
 		};
@@ -1006,6 +1007,7 @@
 				EE2A0B6FD37CBD87753D713243591D61 /* Validation.swift */,
 				C5CF7503A5E308F8B5C9181C5517373D /* Support Files */,
 			);
+			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1015,6 +1017,7 @@
 				19919CEBD8FDE01050BA5948B9712F1D /* SwiftyJSON.swift */,
 				E9056E240EA5ABA37C1FE212FDADBF2F /* Support Files */,
 			);
+			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -1183,6 +1186,7 @@
 				6074AA695B1D41FAE989DB8D08BF726F /* Zip+Collection.swift */,
 				9051F8A62E84A4233416B9BBCBEC7A19 /* Support Files */,
 			);
+			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -1194,6 +1198,7 @@
 				22E1ED6B636464FF54DC58F21532202F /* VideoBackgroundError.swift */,
 				FD41F1918C83B993334848ABCEFE8A60 /* Support Files */,
 			);
+			name = SwiftVideoBackground;
 			path = SwiftVideoBackground;
 			sourceTree = "<group>";
 		};
@@ -1203,6 +1208,7 @@
 				802866E379DCB18B25E04E86944BD73B /* Core */,
 				588A30986EDB3B95D6D14515BE67CA67 /* Support Files */,
 			);
+			name = RxAlamofire;
 			path = RxAlamofire;
 			sourceTree = "<group>";
 		};
@@ -1244,7 +1250,7 @@
 				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa */,
 				FF8B264DFE802855D5D67E7CDDABFC3C /* RxRelay */,
 				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */,
-				6D8CDB93561D3B235015E3B4014A69AB /* libSwiftVideoBackground.a */,
+				6D8CDB93561D3B235015E3B4014A69AB /* SwiftVideoBackground */,
 				E23C076BA70925415F490FEDB215DA92 /* SwiftyJSON */,
 			);
 			name = Products;
@@ -1387,6 +1393,7 @@
 				CA0215CBB22DF4FC1169E8209CCB9F28 /* WKWebView+Rx.swift */,
 				F080920120F92E0B603DF59897A6A3E0 /* Support Files */,
 			);
+			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -1512,6 +1519,7 @@
 				73476784F73AE3F5C9538B7CCD71EA4F /* Utils.swift */,
 				B6BE7C54C11363319561BA538D05587B /* Support Files */,
 			);
+			name = RxRelay;
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
@@ -1629,7 +1637,7 @@
 			);
 			name = SwiftVideoBackground;
 			productName = SwiftVideoBackground;
-			productReference = 6D8CDB93561D3B235015E3B4014A69AB /* libSwiftVideoBackground.a */;
+			productReference = 6D8CDB93561D3B235015E3B4014A69AB /* SwiftVideoBackground */;
 			productType = "com.apple.product-type.library.static";
 		};
 		1A538A5499B1706F0983D6826042657B /* RxAlamofire */ = {
@@ -2615,7 +2623,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftVideoBackground/SwiftVideoBackground-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULEMAP_FILE = Headers/Public/SwiftVideoBackground/SwiftVideoBackground.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2758,7 +2766,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftVideoBackground/SwiftVideoBackground-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULEMAP_FILE = Headers/Public/SwiftVideoBackground/SwiftVideoBackground.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";

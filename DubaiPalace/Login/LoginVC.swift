@@ -93,11 +93,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didClickBrowseBtn(_ sender: Any) {
-        
+        let BaseTBC = UIStoryboard(name: "Base", bundle: nil).instantiateViewController(withIdentifier: "BaseTBC")
+        self.navigationController?.pushViewController(BaseTBC, animated: false)
     }
     
     private func initView() {
-        self.navigationItem.hidesBackButton = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         try? VideoBackground.shared.play(view: videoBackground, videoName: "login", videoType: "mp4", darkness: 0.50)
         self.accountTxtField.delegate = self
         self.pwdTxtField.delegate = self

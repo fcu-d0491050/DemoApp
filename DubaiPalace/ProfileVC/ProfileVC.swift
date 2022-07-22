@@ -1,5 +1,5 @@
 //
-//  LobbyVC.swift
+//  ProfileVC.swift
 //  DubaiPalace
 //
 //  Created by user on 2022/7/22.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class LobbyVC: UIViewController {
+class ProfileVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+
 
     /*
     // MARK: - Navigation
